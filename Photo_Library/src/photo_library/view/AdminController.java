@@ -25,27 +25,31 @@ import java.io.PrintWriter;
 import photo_library.app.*;
 
 public class AdminController extends PhotoLibController {
-	@FXML ListView users;
-	@FXML TextField addName;
+	@FXML Button exit;
+	@FXML Button logout;
+	@FXML ListView userList;
+	@FXML TextField enterUsername;
 	@FXML Button addUser;
 	@FXML Button deleteUser;
 	
 	public void start(Stage primaryStage) throws Exception {
+		System.out.print("Admin page loading");
+		mainStage = primaryStage;
 		Admin admin = new Admin();
 		ArrayList<String> temp = new ArrayList<String>();
 		for(User u:admin.getUsers()) {
 			temp.add(u.getUser());
 		}
-		users.setItems(FXCollections.observableArrayList(temp));
+		userList.setItems(FXCollections.observableArrayList(temp));
 		if(temp.size() > 0) {
 			temp.sort(null);
-			users.getSelectionModel().select(0);
+			userList.getSelectionModel().select(0);
 		}
 	}
 	
 	public void addSong(ActionEvent e) {
 		if((Button)e.getSource() == addUser) {
-			String temp = addName.getText().trim();
+			String temp = enterUsername.getText().trim();
 			if(!temp.isEmpty()) {
 				
 			}
@@ -54,4 +58,5 @@ public class AdminController extends PhotoLibController {
 			}
 		}
 	}
+	
 }

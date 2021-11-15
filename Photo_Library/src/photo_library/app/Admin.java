@@ -7,14 +7,16 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Admin {
-	ArrayList<User> users;
+	ArrayList<User> users = new ArrayList<User>();
 	
 	public Admin() throws Exception {
-		File user_file = new File("users.txt");
+		File user_file = new File("src/users.txt");
 		if(user_file.exists()) {
+			System.out.println("creating user list");
 			Scanner sc = new Scanner(user_file);
 			while(sc.hasNextLine()) {
-				User user = new User(sc.nextLine());
+				String temp = sc.nextLine();
+				User user = new User(temp);
 				users.add(user);
 			}
 			sc.close();

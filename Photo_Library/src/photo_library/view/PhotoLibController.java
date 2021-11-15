@@ -26,21 +26,25 @@ import java.io.PrintWriter;
 
 public abstract class PhotoLibController {
 	@FXML Button logout;
+	Stage mainStage;
 	
-	public void logout(ActionEvent e, Stage primaryStage) throws Exception{
+	public void logout(ActionEvent e) throws Exception{
 		if ((Button)e.getSource() == logout) {
+			System.out.println("Logging out");
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/photoLibrary/view/login.fxml"));
-			loginController photoController = 
-					loader.getController();
-			photoController.start(primaryStage);
+			loader.setLocation(getClass().getResource("/photo_library/view/login.fxml"));
+			System.out.println("starting to load");
 			AnchorPane root = (AnchorPane)loader.load();
+			System.out.println("loaded pane");
+			loginController photoController = loader.getController();
+			
+			photoController.start(mainStage);
 
 			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Login");
-			primaryStage.setResizable(false);
-			primaryStage.show();
+			mainStage.setScene(scene);
+			mainStage.setTitle("Login");
+			mainStage.setResizable(false);
+			mainStage.show();
 		}
 	}
 	

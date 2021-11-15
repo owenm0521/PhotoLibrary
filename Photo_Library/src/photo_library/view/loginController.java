@@ -1,75 +1,72 @@
 package photo_library.view;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.control.ListView;
-import java.io.BufferedReader;  
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import photo_library.app.*;
 
 public class loginController extends PhotoLibController {
-	ArrayList<User> users;
+	ArrayList<User> users = new ArrayList<User>();
 	
-	@FXML Button login;
-	@FXML TextField username;
+	@FXML Button enter;
+	@FXML Button exit;
+	@FXML TextField enterUsername;
+	Stage mainStage;
 	
 	public void start(Stage PrimaryStage) throws Exception {
 		Admin admin = new Admin();
 		users = admin.getUsers();
-		
+		mainStage = PrimaryStage;
 		
 	}
-	public void login(ActionEvent e, Stage primaryStage) throws Exception {
-		if((Button)e.getSource() == login) {
-			String new_user = username.getText().trim();
+	public void login(ActionEvent e) throws Exception {
+		if((Button)e.getSource() == enter) {
+			boolean dne = false;
+			String new_user = enterUsername.getText().trim();
 			if(new_user.equals("admin")) {
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("/photoLibrary/view/admin.fxml"));
-				AdminController photoController = 
-						loader.getController();
-				photoController.start(primaryStage);
+				loader.setLocation(getClass().getResource("/photo_library/view/admin.fxml"));
+				System.out.println("starting to load");
 				AnchorPane root = (AnchorPane)loader.load();
+				System.out.println("loaded pane");
+				AdminController photoController = loader.getController();
+				
+				photoController.start(mainStage);
 
 				Scene scene = new Scene(root);
-				primaryStage.setScene(scene);
-				primaryStage.setTitle("Admin Console");
-				primaryStage.setResizable(false);
-				primaryStage.show();
+				mainStage.setScene(scene);
+				mainStage.setTitle("Admin Console");
+				mainStage.setResizable(false);
+				mainStage.show();
+				dne = true;
 			}
 			for(User u: users) {
+				System.out.println(u.getUser());
 				if(u.getUser().equals(new_user)) {
 					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(getClass().getResource("/photoLibrary/view/admin.fxml"));
+					loader.setLocation(getClass().getResource("/photo_library/view/user.fxml"));
 					UserController photoController = 
 							loader.getController();
-					photoController.start(primaryStage);
+					photoController.start(mainStage);
 					AnchorPane root = (AnchorPane)loader.load();
 
 					Scene scene = new Scene(root);
-					primaryStage.setScene(scene);
-					primaryStage.setTitle("User Console");
-					primaryStage.setResizable(false);
-					primaryStage.show();
+					mainStage.setScene(scene);
+					mainStage.setTitle("User Console");
+					mainStage.setResizable(false);
+					mainStage.show();
+					dne=true;
 				}
 			}
-			incorrectInfoError("Incorrect Username", "No username in database");
+			if(!dne) {
+				incorrectInfoError("Incorrect Username", "No username in database");
+			}
 		}
 		
 	}

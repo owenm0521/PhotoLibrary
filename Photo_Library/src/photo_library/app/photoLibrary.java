@@ -14,12 +14,14 @@ public class photoLibrary extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/photoLibrary/view/login.fxml"));
-
+		loader.setLocation(getClass().getResource("/photo_library/view/login.fxml"));
+		System.out.println("starting to load");
 		AnchorPane root = (AnchorPane)loader.load();
-		
+		System.out.println("loaded pane");
 		loginController photoController = 
 				loader.getController();
+		
+		
 		photoController.start(primaryStage);
 
 		Scene scene = new Scene(root);
