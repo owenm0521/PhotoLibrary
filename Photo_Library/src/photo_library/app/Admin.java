@@ -27,7 +27,7 @@ public class Admin {
 		return users;
 	}
 	
-	public boolean deleteUser(String user) throws IOException {
+	public boolean deleteUser(String user) throws Exception {
 		User temp = null;
 		for(User u: users) {
 			if(u.getUser().equals(user)) {
@@ -37,11 +37,7 @@ public class Admin {
 		}
 		if(temp != null) {
 			users.remove(temp);
-			PrintWriter writer = new PrintWriter(new FileWriter("users.txt"));
-			for(User u: users) {
-				writer.println(u.getUser());
-			}
-			writer.close();
+			updateUsers();
 			return true;
 		}
 		else {
@@ -50,24 +46,17 @@ public class Admin {
 	}
 	
 	public boolean addUser(String user) throws Exception {
-		User temp = null;
+		User temp = new User(user);
+		users.add(temp);
+		updateUsers();
+		return true;
+	}
+	
+	private void updateUsers() throws Exception {
+		PrintWriter writer = new PrintWriter(new FileWriter("src/users.txt"));
 		for(User u: users) {
-			if(u.getUser().equals(user)) {
-				temp = u;
-				break;
-			}
+			writer.println(u.getUser());
 		}
-		if(temp != null) {
-			return false;
-		}
-		else {
-			users.add(new User(user));
-			PrintWriter writer = new PrintWriter(new FileWriter("users.txt"));
-			for(User u: users) {
-				writer.println(u.getUser());
-			}
-			writer.close();
-			return true;
-		}
+		writer.close();
 	}
 }

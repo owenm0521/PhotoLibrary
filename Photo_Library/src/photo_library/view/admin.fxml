@@ -18,8 +18,8 @@
       </Text>
       <Button fx:id="exit" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" text="Exit" />
       <Button fx:id="logout" layoutX="100.0" layoutY="15.0" mnemonicParsing="false" text="Logout" onAction="#logout"/>
-      <Button fx:id="deleteUser" layoutX="349.0" layoutY="281.0" mnemonicParsing="false" text="Delete Selected User" />
+      <Button fx:id="deleteUser" layoutX="349.0" layoutY="281.0" mnemonicParsing="false" text="Delete Selected User" onAction="#deleteUser"/>
       <TextField fx:id="enterUsername" layoutX="349.0" layoutY="160.0" prefHeight="26.0" prefWidth="111.0" promptText="Username:" />
-      <Button fx:id="addUser" layoutX="460.0" layoutY="160.0" mnemonicParsing="false" text="Add User" />
+      <Button fx:id="addUser" layoutX="460.0" layoutY="160.0" mnemonicParsing="false" text="Add User" onAction="#addUser"/>
    </children>
 </AnchorPane>

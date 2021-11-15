@@ -27,35 +27,72 @@ import photo_library.app.*;
 public class AdminController extends PhotoLibController {
 	@FXML Button exit;
 	@FXML Button logout;
-	@FXML ListView userList;
+	@FXML ListView<String> userList;
 	@FXML TextField enterUsername;
 	@FXML Button addUser;
 	@FXML Button deleteUser;
+	private Admin admin;
+	private ArrayList<String> usernames;
 	
 	public void start(Stage primaryStage) throws Exception {
-		System.out.print("Admin page loading");
+		System.out.println("Admin page loading");
 		mainStage = primaryStage;
-		Admin admin = new Admin();
-		ArrayList<String> temp = new ArrayList<String>();
+		admin = new Admin();
+		usernames = new ArrayList<String>();
 		for(User u:admin.getUsers()) {
-			temp.add(u.getUser());
+			usernames.add(u.getUser());
 		}
-		userList.setItems(FXCollections.observableArrayList(temp));
-		if(temp.size() > 0) {
-			temp.sort(null);
+		usernames.sort(null);
+		userList.setItems(FXCollections.observableArrayList(usernames));
+		if(usernames.size() > 0) {
 			userList.getSelectionModel().select(0);
 		}
 	}
 	
-	public void addSong(ActionEvent e) {
+	public void addUser(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == addUser) {
 			String temp = enterUsername.getText().trim();
+			enterUsername.clear();
+			boolean duplicate = false;
 			if(!temp.isEmpty()) {
-				
-			}
+				System.out.println("checking for duplicates");
+				ArrayList<String> tempList = new ArrayList<String>();
+				for(int i = 0; i < usernames.size();i++) {
+					tempList.add(usernames.get(i));
+				}
+				for(String s: tempList) {
+					if(temp.equals(s)) {
+						incorrectInfoError("duplicate username","User already exists");
+						duplicate = true;
+						break;
+					}
+				}
+				if(duplicate) {
+					return;
+				}
+					System.out.println("adding to list");
+					admin.addUser(temp);
+					usernames.add(temp);
+					usernames.sort(null);
+					int index = usernames.indexOf(temp);
+					ObservableList<String> newList = FXCollections.observableArrayList(usernames);
+					System.out.println("updating list");
+					userList.setItems(newList);
+					userList.getSelectionModel().select(index);
+					System.out.println("Added to list");
+				}
 			else {
 				incorrectInfoError("no username","No username inputted in text box. Please try again after typing a name.");
 			}
+		}
+	}
+	
+	public void deleteUser(ActionEvent e) throws Exception{
+		if((Button)e.getSource() == deleteUser) {
+			int index = userList.getSelectionModel().getSelectedIndex();
+			userList.getItems().remove(index);
+			admin.deleteUser(usernames.get(index));
+			usernames.remove(index);
 		}
 	}
 	
