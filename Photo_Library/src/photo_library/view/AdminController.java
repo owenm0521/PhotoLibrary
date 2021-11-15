@@ -23,6 +23,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import photo_library.app.*;
+import java.io.File;
 
 public class AdminController extends PhotoLibController {
 	@FXML Button exit;
@@ -91,8 +92,11 @@ public class AdminController extends PhotoLibController {
 		if((Button)e.getSource() == deleteUser) {
 			int index = userList.getSelectionModel().getSelectedIndex();
 			userList.getItems().remove(index);
-			admin.deleteUser(usernames.get(index));
+			String name = usernames.get(index);
+			admin.deleteUser(name);
 			usernames.remove(index);
+			File removal = new File("src/"+name +".txt");
+			removal.delete();
 		}
 	}
 	
