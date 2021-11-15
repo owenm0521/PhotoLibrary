@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="exit" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" text="Exit" />
+      <ImageView fx:id="photo" fitHeight="280.0" fitWidth="572.0" layoutX="14.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="captionText" layoutX="14.0" layoutY="360.0" />
+      <TextField fx:id="dateText" layoutX="220.0" layoutY="360.0" />
+      <TextField fx:id="tagsText" layoutX="426.0" layoutY="360.0" />
+      <Text fx:id="captionHeader" layoutX="18.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Caption:" />
+      <Text fx:id="dateHeader" layoutX="220.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" wrappingWidth="45.72216796875" />
+      <Text fx:id="tagsHeader" layoutX="426.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tags:" />
+   </children>
+</AnchorPane>
