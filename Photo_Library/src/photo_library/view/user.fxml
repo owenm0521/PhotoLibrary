@@ -7,12 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<<<<<<< HEAD
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="581.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-=======
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="581.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photo_library.view.UserController">
->>>>>>> 1ca8b3141c1ccf74e4ba98c21bf2ee48e899093c
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photo_library.view.UserController">
    <children>
       <Button fx:id="logout" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Logout" />
       <Text fx:id="albumListHeader" layoutX="126.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Albums" wrappingWidth="79.26953125">
@@ -21,14 +16,26 @@
          </font>
       </Text>
       <ListView fx:id="albumList" layoutX="32.0" layoutY="110.0" prefHeight="276.0" prefWidth="267.0" />
-      <TextField fx:id="enterNewAlbum" layoutX="345.0" layoutY="169.0" prefHeight="26.0" prefWidth="111.0" promptText="Album Name:" />
-      <Button fx:id="createNewAlbum" layoutX="464.0" layoutY="169.0" mnemonicParsing="false" text="Create" />
-      <Button fx:id="deleteCurrentAlbum" layoutX="398.0" layoutY="327.0" mnemonicParsing="false" text="Delete " />
-      <Button fx:id="openCurrentAlbum" layoutX="347.0" layoutY="327.0" mnemonicParsing="false" text="Open" />
-      <Text fx:id="newAlbumHeader" layoutX="347.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Album" />
-      <Text fx:id="currentAlbumHeader" layoutX="347.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Album" />
-      <TextField fx:id="enterCurrentAlbum" layoutX="345.0" layoutY="287.0" prefHeight="26.0" prefWidth="111.0" promptText="Album Name:" />
-      <Button fx:id="renameCurrentAlbum" layoutX="464.0" layoutY="287.0" mnemonicParsing="false" text="Rename" />
-      <Button layoutX="263.0" layoutY="401.0" mnemonicParsing="false" text="Search All" />
+      <TextField fx:id="newAlbumName" layoutX="439.0" layoutY="171.0" prefHeight="26.0" prefWidth="158.0" />
+      <Button fx:id="createNewAlbum" layoutX="428.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Create" />
+      <Button fx:id="deleteCurrentAlbum" layoutX="518.0" layoutY="388.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Delete " />
+      <Button fx:id="openCurrentAlbum" layoutX="428.0" layoutY="388.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Open" />
+      <Text fx:id="newAlbumHeader" layoutX="324.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Album">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <Text fx:id="currentAlbumHeader" layoutX="315.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Album">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <TextField fx:id="currentAlbumName" layoutX="439.0" layoutY="290.0" prefHeight="26.0" prefWidth="158.0" />
+      <Button fx:id="renameCurrentAlbum" layoutX="333.0" layoutY="388.0" mnemonicParsing="false" text="Rename" />
+      <Button layoutX="130.0" layoutY="401.0" mnemonicParsing="false" text="Search All" />
+      <TextField fx:id="numPhotos" layoutX="439.0" layoutY="322.0" prefHeight="26.0" prefWidth="158.0" />
+      <TextField fx:id="dateRange" layoutX="439.0" layoutY="354.0" prefHeight="26.0" prefWidth="158.0" />
+      <Text fx:id="numPhotosHeader" layoutX="324.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Photos:" />
+      <Text fx:id="dateRangeHeader" layoutX="324.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Range:" />
+      <Text fx:id="albumNameHeader2" layoutX="325.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Album Name: " />
+      <Text fx:id="albumNameHeader1" layoutX="326.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Album Name: " />
    </children>
 </AnchorPane>
