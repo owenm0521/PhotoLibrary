@@ -11,7 +11,7 @@ public class User {
 	private HashMap<String, String> albums;
 	public User(String username) throws Exception {
 		this.username = username;
-		File file = new File(username+".txt");
+		File file = new File("src/"+username+".txt");
 		if(file.exists()) {
 			Scanner sc = new Scanner(file);
 			while(sc.hasNextLine()) {
@@ -23,6 +23,7 @@ public class User {
 			sc.close();
 		}
 		else {
+			System.out.println("Created new file");
 			file.createNewFile();
 		}
 	}

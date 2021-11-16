@@ -1,5 +1,6 @@
 package photo_library.app;
 import java.util.Date;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.time.*;
 import java.io.File;
@@ -7,11 +8,12 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class Photo {
-	String location;
-	String name;
-	String caption; 
-	Date date;
+public class Photo implements Serializable{
+	private String location;
+	private String name;
+	private String caption; 
+	private Date date;
+	private static final long serialVersionUID = 1L;
 	
 	HashMap<String, ArrayList<String>> tags;
 	

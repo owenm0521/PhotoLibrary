@@ -51,14 +51,16 @@ public class loginController extends PhotoLibController {
 				if(u.getUser().equals(new_user)) {
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(getClass().getResource("/photo_library/view/user.fxml"));
-					UserController photoController = 
-							loader.getController();
-					photoController.start(mainStage);
+					System.out.println("starting to load");
 					AnchorPane root = (AnchorPane)loader.load();
+					System.out.println("loaded pane");
+					UserController photoController = loader.getController();
+					
+					photoController.start(mainStage);
 
 					Scene scene = new Scene(root);
 					mainStage.setScene(scene);
-					mainStage.setTitle("User Console");
+					mainStage.setTitle(new_user);
 					mainStage.setResizable(false);
 					mainStage.show();
 					dne=true;

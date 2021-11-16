@@ -1,5 +1,6 @@
 package photo_library.view;
 import javafx.collections.ObservableList;
+import java.io.File;
 import javafx.event.ActionEvent;
 
 import java.util.ArrayList;
@@ -71,16 +72,15 @@ public class AdminController extends PhotoLibController {
 				if(duplicate) {
 					return;
 				}
-					System.out.println("adding to list");
+				
 					admin.addUser(temp);
 					usernames.add(temp);
 					usernames.sort(null);
 					int index = usernames.indexOf(temp);
 					ObservableList<String> newList = FXCollections.observableArrayList(usernames);
-					System.out.println("updating list");
 					userList.setItems(newList);
 					userList.getSelectionModel().select(index);
-					System.out.println("Added to list");
+					
 				}
 			else {
 				incorrectInfoError("no username","No username inputted in text box. Please try again after typing a name.");
