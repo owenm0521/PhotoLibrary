@@ -79,7 +79,7 @@ public class AdminController extends PhotoLibController {
 					ObservableList<String> newList = FXCollections.observableArrayList(usernames);
 					userList.setItems(newList);
 					userList.getSelectionModel().select(index);
-					
+					PhotoLibrary.users.add(new User(temp));
 				}
 			else {
 				incorrectInfoError("no username","No username inputted in text box. Please try again after typing a name.");
@@ -90,12 +90,15 @@ public class AdminController extends PhotoLibController {
 	public void deleteUser(ActionEvent e) throws Exception{
 		if((Button)e.getSource() == deleteUser) {
 			int index = userList.getSelectionModel().getSelectedIndex();
+			if(index==-1) {
+				return;
+			}
 			userList.getItems().remove(index);
 			String name = usernames.get(index);
 			admin.deleteUser(name);
 			usernames.remove(index);
-			File removal = new File("src/"+name +".txt");
-			removal.delete();
+			User temp = PhotoLibrary.getUser(name);
+			PhotoLibrary.users.remove(temp);
 		}
 	}
 	

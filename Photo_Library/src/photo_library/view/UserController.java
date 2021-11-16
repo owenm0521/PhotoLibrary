@@ -25,7 +25,48 @@ import java.io.PrintWriter;
 import photo_library.app.*;
 
 public class UserController extends PhotoLibController {
+	User currentUser;
+	ArrayList<Album> albums;
+	
+	@FXML ListView<String> albumList;
+	@FXML Button createNewAlbum;
+	@FXML Button deleteCurrentAlbum;
+	@FXML Button openCurrentAlbum;
+	@FXML Button renameCurrentAlbum;
+	@FXML TextField enterNewALbum;
+	@FXML TextField CurrentAlbumName;
+	@FXML TextField numPhotos;
+	@FXML TextField dateRange;
+	
 	public void start(Stage primaryStage) {
+		mainStage = primaryStage;
+		currentUser = PhotoLibrary.currentUser;
+		
+		albums = new ArrayList<Album>();
+		albums = currentUser.getAlbums();
+		
+		ObservableList<String> albumNames = FXCollections.observableArrayList();
+		for(Album a: albums) {
+			albumNames.add(a.getName());
+		}
+		
+		albumList.setItems(albumNames);
+		
+		albumList.getSelectionModel().selectedIndexProperty().addListener((obs, oldVal, newVal) -> updateAlbumInfo());
+		
+		albumList.getSelectionModel().select(0);
+	}
+	
+	public void updateAlbumInfo() {
+		int index = albumList.getSelectionModel().getSelectedIndex();
+		Album album  = albums.get(index);
+		CurrentAlbumName.setText(album.getName());
+		int numphoto = 0;
+		for(Photo p: album.getPhotos()) {
+			numphoto++;
+		}
+		numPhotos.setText(numphoto+"");
+		dateRange.setText(album.getMinDate() + "to" + album.getMaxDate());
 		
 	}
 }

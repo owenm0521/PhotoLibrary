@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import photo_library.view.*;
 import photo_library.app.User;
 
-public class photoLibrary extends Application implements Serializable{
+public class PhotoLibrary extends Application implements Serializable{
 	private static final long serialVersionUID = 1L;
 	public static ArrayList<User> users;
 	public static User currentUser;
@@ -65,6 +65,15 @@ public class photoLibrary extends Application implements Serializable{
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("pictures/users.dat"));
 			ArrayList<User> temp_users = (ArrayList<User>)ois.readObject();
 			return temp_users;
+	}
+	
+	public static User getUser(String name) {
+		for(User u:users) {
+			if(u.getUser().equals(name)) {
+				return u;
+			}
+		}
+		return null;
 	}
 
 }
