@@ -27,7 +27,6 @@ import photo_library.app.*;
 import java.io.File;
 
 public class AdminController extends PhotoLibController {
-	@FXML Button exit;
 	@FXML Button logout;
 	@FXML ListView<String> userList;
 	@FXML TextField enterUsername;

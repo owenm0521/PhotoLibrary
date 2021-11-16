@@ -9,18 +9,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Photo implements Serializable{
-	private String location;
+	private String path;
 	private String name;
 	private String caption; 
 	private Date date;
 	private static final long serialVersionUID = 1L;
 	
-	HashMap<String, ArrayList<String>> tags;
+	private HashMap<String, ArrayList<String>> tags;
 	
-	public Photo(String location, String name) {
-		this.location = location;
+	public Photo(String location) {
+		this.path = location;
 		File image = new File(location);
 		date = convertTime(image.lastModified());
+		caption = "";
 		this.name = image.getName();
 	}
 	
@@ -29,38 +30,35 @@ public class Photo implements Serializable{
 	    return date;
 	}
 	
-	public void addCaption(String caption) {
-		this.caption = caption;
-	}
 	
-	public void addtags(String tag, String value) {
-		if(tags.containsKey(tag)) {
-			ArrayList<String> temp = tags.get(tag);
-			temp.add(value);
-			tags.put(tag, temp);
-		}
-		else {
-			ArrayList temp = new ArrayList<String>();
-			temp.add(value);
-			tags.put(tag,temp);
-		}
+	public void settags(HashMap<String, ArrayList<String>> tags) {
+		this.tags = tags;
 		
 	}
 	
+	public void setCaption(String caption) {
+		this.caption = caption;
+	}
+
 	public String getCaption() {
 		return caption;
 	}
+	
 	
 	public String getName() {
 		return name;
 	}
 	
-	public String getLocation() {
-		return location;
+	public String getPath() {
+		return path;
 	}
 	
 	public HashMap<String, ArrayList<String>> getTags() {
 		return tags;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	public Date getDate() {
