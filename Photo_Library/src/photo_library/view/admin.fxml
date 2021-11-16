@@ -7,7 +7,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photo_library.view.AdminController">
    <children>
       <ListView fx:id="userList" layoutX="22.0" layoutY="100.0" prefHeight="276.0" prefWidth="267.0" />
@@ -16,10 +15,9 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="exit" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" text="Exit" />
-      <Button fx:id="logout" layoutX="100.0" layoutY="15.0" mnemonicParsing="false" text="Logout" onAction="#logout"/>
-      <Button fx:id="deleteUser" layoutX="349.0" layoutY="281.0" mnemonicParsing="false" text="Delete Selected User" onAction="#deleteUser"/>
+      <Button fx:id="logout" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button fx:id="deleteUser" layoutX="349.0" layoutY="281.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete Selected User" />
       <TextField fx:id="enterUsername" layoutX="349.0" layoutY="160.0" prefHeight="26.0" prefWidth="111.0" promptText="Username:" />
-      <Button fx:id="addUser" layoutX="460.0" layoutY="160.0" mnemonicParsing="false" text="Add User" onAction="#addUser"/>
+      <Button fx:id="addUser" layoutX="460.0" layoutY="160.0" mnemonicParsing="false" onAction="#addUser" text="Add User" />
    </children>
 </AnchorPane>
