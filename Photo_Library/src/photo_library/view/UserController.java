@@ -34,7 +34,7 @@ public class UserController extends PhotoLibController {
 	@FXML Button openCurrentAlbum;
 	@FXML Button renameCurrentAlbum;
 	@FXML TextField enterNewAlbum;
-	@FXML TextField CurrentAlbumName;
+	@FXML TextField currentAlbumName;
 	@FXML TextField numPhotos;
 	@FXML TextField dateRange;
 	
@@ -60,7 +60,7 @@ public class UserController extends PhotoLibController {
 	public void updateAlbumInfo() {
 		int index = albumList.getSelectionModel().getSelectedIndex();
 		Album album  = albums.get(index);
-		CurrentAlbumName.setText(album.getName());
+		currentAlbumName.setText(album.getName());
 		int numphoto = 0;
 		for(Photo p: album.getPhotos()) {
 			numphoto++;
@@ -98,12 +98,12 @@ public class UserController extends PhotoLibController {
 	
 	public void renameAlbum(ActionEvent e) {
 		if((Button)e.getSource() == renameCurrentAlbum) {
-			if(CurrentAlbumName.getText().isEmpty()) {
+			if(currentAlbumName.getText().isEmpty()) {
 				incorrectInfoError("Empty Name","You did not provide a name for your album");
 				return;
 			}
 			String current = albumList.getSelectionModel().getSelectedItem();
-			String new_name = CurrentAlbumName.getText();
+			String new_name = currentAlbumName.getText();
 			if(!current.equals(new_name)) {
 				if(currentUser.searchAlbums(new_name)!=null) {
 					incorrectInfoError("Duplicate Album","There is another album with this name. Please choose a different name");
@@ -140,7 +140,7 @@ public class UserController extends PhotoLibController {
 		updateAlbumList();
 		albumList.getSelectionModel().select(index-1);
 		if(albums.size() <= 0) {
-			CurrentAlbumName.clear();
+			currentAlbumName.clear();
 			dateRange.clear();
 			numPhotos.clear();
 		}
