@@ -230,7 +230,7 @@ public class PhotoSearchController extends PhotoLibController {
 		
 	}
 	
-	private void populateList() {
+	public void populateList() {
 		ObservableList<ImageView> photos = FXCollections.observableArrayList(); 
 		for (String result : results) {
 			ImageView image = new ImageView(result);
