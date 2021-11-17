@@ -37,6 +37,7 @@ public class UserController extends PhotoLibController {
 	@FXML TextField currentAlbumName;
 	@FXML TextField numPhotos;
 	@FXML TextField dateRange;
+	@FXML Button search;
 	
 	public void start(Stage primaryStage) {
 		mainStage = primaryStage;
@@ -172,9 +173,10 @@ public class UserController extends PhotoLibController {
 		}
 	}
 	
-	public void search() throws Exception {
+	public void search(ActionEvent e) throws Exception {
+		if((Button)e.getSource() == search) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/photo_library/view/albumPage.fxml"));
+		loader.setLocation(getClass().getResource("/photo_library/view/photoSearch.fxml"));
 		AnchorPane root = (AnchorPane)loader.load();
 		PhotoSearchController searchController = loader.getController();
 		
@@ -185,5 +187,6 @@ public class UserController extends PhotoLibController {
 		mainStage.setTitle("Login");
 		mainStage.setResizable(false);
 		mainStage.show();
+	}
 	}
 }
