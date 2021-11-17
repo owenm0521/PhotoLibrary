@@ -25,7 +25,7 @@ import java.io.PrintWriter;
 import photo_library.app.*;
 
 public class UserController extends PhotoLibController {
-	User currentUser;
+	User currentUser = null;
 	ArrayList<Album> albums;
 	
 	@FXML ListView<String> albumList;

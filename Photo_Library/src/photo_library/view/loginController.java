@@ -44,6 +44,7 @@ public class loginController extends PhotoLibController {
 				dne = true;
 			}
 			if(PhotoLibrary.getUser(new_user) != null) {FXMLLoader loader = new FXMLLoader();
+					PhotoLibrary.currentUser = PhotoLibrary.getUser(new_user);
 					loader.setLocation(getClass().getResource("/photo_library/view/user.fxml"));
 					System.out.println("starting to load");
 					AnchorPane root = (AnchorPane)loader.load();
