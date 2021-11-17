@@ -60,33 +60,23 @@ public class PhotoLibrary extends Application implements Serializable{
 //		users.add(stock);
 //		Album stockAlbum = new Album("stock");
 //		stock.getAlbums().add(stockAlbum);
-//		Photo donutPhoto = new Photo("./pictures/donut.png");
-//		donutPhoto.setCaption("Donut");
+//		Photo donutPhoto = new Photo("./data/cat.png");
+//		donutPhoto.setCaption("Cat");
 //		stockAlbum.addPhoto(donutPhoto);
-//		Photo mcQueenPhoto = new Photo("./pictures/mcQueen.png");
-//		mcQueenPhoto.setCaption("Lightning McQueen");
+//		Photo mcQueenPhoto = new Photo("./data/dog.png");
+//		mcQueenPhoto.setCaption("dog");
 //		stockAlbum.addPhoto(mcQueenPhoto);
-//		Photo nemoPhoto = new Photo("./pictures/nemo.jpeg");
-//		nemoPhoto.setCaption("Nemo");
+//		Photo nemoPhoto = new Photo("./data/elmo.jpeg");
+//		nemoPhoto.setCaption("elmo");
 //		stockAlbum.addPhoto(nemoPhoto);
-//		Photo penguinPhoto = new Photo("./pictures/Penguin.png");
-//		penguinPhoto.setCaption("Penguin");
-//		stockAlbum.addPhoto(penguinPhoto);
-//		Photo planktonPhoto = new Photo("./pictures/planketon.jpeg");
-//		planktonPhoto.setCaption("Plankton");
-//		stockAlbum.addPhoto(planktonPhoto);
-//		Photo spongebobPhoto = new Photo("./pictures/spongebob.jpeg");
-//		spongebobPhoto.setCaption("Spongebob");
-//		stockAlbum.addPhoto(spongebobPhoto);
-		
-		
+//		
 		storeUsers(users);
 
 	}
 	
 	public static void storeUsers(ArrayList<User> users) {
 		try {
-			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("pictures/users.dat"));
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("data/users.dat"));
 			output.writeObject(users);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -95,7 +85,7 @@ public class PhotoLibrary extends Application implements Serializable{
 	}
 	
 	public static ArrayList<User> retrieveUsers() throws IOException, IOException, ClassNotFoundException {
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("pictures"+ File.separator + "users.dat"));
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data"+ File.separator + "users.dat"));
 		ArrayList<User >temp_users = (ArrayList<User>)ois.readObject();
 			return temp_users;
 	}

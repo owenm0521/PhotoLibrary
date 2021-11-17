@@ -147,7 +147,7 @@ public class UserController extends PhotoLibController {
 	}
 	}
 	
-	/* 
+	
 	
 	public void openAlbum(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == openCurrentAlbum) {
@@ -171,7 +171,6 @@ public class UserController extends PhotoLibController {
 			
 		}
 	}
-	*/ 
 	
 	public void search() throws Exception {
 		FXMLLoader loader = new FXMLLoader();
