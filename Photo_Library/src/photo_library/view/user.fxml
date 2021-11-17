@@ -18,7 +18,7 @@
       <ListView fx:id="albumList" layoutX="32.0" layoutY="110.0" prefHeight="276.0" prefWidth="267.0" />
       <TextField fx:id="newAlbumName" layoutX="439.0" layoutY="171.0" prefHeight="26.0" prefWidth="158.0" />
       <Button fx:id="createNewAlbum" layoutX="428.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Create" onAction="#createAlbum" />
-      <Button fx:id="deleteCurrentAlbum" layoutX="518.0" layoutY="388.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Delete " onAction="#deleteALbum"/>
+      <Button fx:id="deleteCurrentAlbum" layoutX="518.0" layoutY="388.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Delete " onAction="#deleteAlbum"/>
       <Button fx:id="openCurrentAlbum" layoutX="428.0" layoutY="388.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Open" onAction="#openAlbum"/>
       <Text fx:id="newAlbumHeader" layoutX="324.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Album">
          <font>

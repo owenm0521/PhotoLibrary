@@ -47,23 +47,56 @@ public class PhotoLibrary extends Application implements Serializable{
 		primaryStage.show();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		users = new ArrayList<User>();
+		
+		ArrayList<User> temp = retrieveUsers();
+		if(temp != null) {
+			users = temp;
+		}
 		launch(args);
+		
+//		User stock = new User("stock");
+//		users.add(stock);
+//		Album stockAlbum = new Album("stock");
+//		stock.getAlbums().add(stockAlbum);
+//		Photo donutPhoto = new Photo("./pictures/donut.png");
+//		donutPhoto.setCaption("Donut");
+//		stockAlbum.addPhoto(donutPhoto);
+//		Photo mcQueenPhoto = new Photo("./pictures/mcQueen.png");
+//		mcQueenPhoto.setCaption("Lightning McQueen");
+//		stockAlbum.addPhoto(mcQueenPhoto);
+//		Photo nemoPhoto = new Photo("./pictures/nemo.jpeg");
+//		nemoPhoto.setCaption("Nemo");
+//		stockAlbum.addPhoto(nemoPhoto);
+//		Photo penguinPhoto = new Photo("./pictures/Penguin.png");
+//		penguinPhoto.setCaption("Penguin");
+//		stockAlbum.addPhoto(penguinPhoto);
+//		Photo planktonPhoto = new Photo("./pictures/planketon.jpeg");
+//		planktonPhoto.setCaption("Plankton");
+//		stockAlbum.addPhoto(planktonPhoto);
+//		Photo spongebobPhoto = new Photo("./pictures/spongebob.jpeg");
+//		spongebobPhoto.setCaption("Spongebob");
+//		stockAlbum.addPhoto(spongebobPhoto);
+		
+		
+		storeUsers(users);
 
 	}
 	
 	public static void storeUsers(ArrayList<User> users) {
 		try {
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("pictures/users.dat"));
+			output.writeObject(users);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static ArrayList<User> retrieveUsers() throws Exception {
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("pictures/users.dat"));
-			ArrayList<User> temp_users = (ArrayList<User>)ois.readObject();
+	public static ArrayList<User> retrieveUsers() throws IOException, IOException, ClassNotFoundException {
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("pictures"+ File.separator + "users.dat"));
+		ArrayList<User >temp_users = (ArrayList<User>)ois.readObject();
 			return temp_users;
 	}
 	

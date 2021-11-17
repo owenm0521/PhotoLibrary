@@ -1,5 +1,7 @@
 package photo_library.view;
 
+import java.io.IOException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +19,7 @@ import photo_library.app.Photo;
 import photo_library.app.PhotoLibrary;
 import photo_library.app.User;
 
-public class albumsListController extends PhotoLibController {
+public class AlbumsListController extends PhotoLibController {
 	@FXML Button back; 
 	@FXML Button copyToAlbum; 
 	@FXML Button moveToAlbum; 
@@ -67,13 +69,17 @@ public class albumsListController extends PhotoLibController {
 	}
 	/* 
 	
-	private void back(ActionEvent e) {
+	private void back(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == back) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/photo_library/view/albumPage.fxml"));
 			AnchorPane root = (AnchorPane)loader.load();
 			AlbumPageController controller = loader.getController();
+<<<<<<< HEAD:Photo_Library/src/photo_library/view/albumsListController.java
 			controller.start(primaryStage);
+=======
+			controller.start(primaryStage, prevAlbum, currUser);
+>>>>>>> 16e6f8213a5da2d404a5faa0b52493aa01976388:Photo_Library/src/photo_library/view/AlbumsListController.java
 	
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);

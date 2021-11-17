@@ -32,22 +32,17 @@ public class AdminController extends PhotoLibController {
 	@FXML TextField enterUsername;
 	@FXML Button addUser;
 	@FXML Button deleteUser;
-	private Admin admin;
-	private ArrayList<String> usernames;
+	private ObservableList<String> usernames;
 	
 	public void start(Stage primaryStage) throws Exception {
 		System.out.println("Admin page loading");
 		mainStage = primaryStage;
-		admin = new Admin();
-		usernames = new ArrayList<String>();
-		for(User u:admin.getUsers()) {
+		usernames = FXCollections.observableArrayList();
+		for(User u:PhotoLibrary.users) {
 			usernames.add(u.getUser());
 		}
-		usernames.sort(null);
-		userList.setItems(FXCollections.observableArrayList(usernames));
-		if(usernames.size() > 0) {
-			userList.getSelectionModel().select(0);
-		}
+		userList.setItems(usernames);
+		userList.getSelectionModel().select(0);
 	}
 	
 	public void addUser(ActionEvent e) throws Exception {
@@ -72,13 +67,8 @@ public class AdminController extends PhotoLibController {
 					return;
 				}
 				
-					admin.addUser(temp);
+					
 					usernames.add(temp);
-					usernames.sort(null);
-					int index = usernames.indexOf(temp);
-					ObservableList<String> newList = FXCollections.observableArrayList(usernames);
-					userList.setItems(newList);
-					userList.getSelectionModel().select(index);
 					PhotoLibrary.users.add(new User(temp));
 				}
 			else {
@@ -95,7 +85,6 @@ public class AdminController extends PhotoLibController {
 			}
 			userList.getItems().remove(index);
 			String name = usernames.get(index);
-			admin.deleteUser(name);
 			usernames.remove(index);
 			User temp = PhotoLibrary.getUser(name);
 			PhotoLibrary.users.remove(temp);
