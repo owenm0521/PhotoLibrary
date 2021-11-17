@@ -20,10 +20,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import photo_library.app.Album;
 import photo_library.app.Photo;
+import photo_library.app.PhotoLibrary;
 import photo_library.app.User;
 
 public class PhotoSearchController extends PhotoLibController {
@@ -41,7 +43,7 @@ public class PhotoSearchController extends PhotoLibController {
 	@FXML TextField tagTypeDouble2; 
 	@FXML TextField tagValueDouble2; 
 	@FXML Button tagSearchDouble; 
-	@FXML ListView resultsList; 
+	@FXML ListView<ImageView> resultsList; 
 	@FXML TextField enterAlbumName; 
 	@FXML Button createNewAlbum; 
 	
@@ -92,6 +94,9 @@ public class PhotoSearchController extends PhotoLibController {
 					}
 				}
 			}
+			
+			populateList(); 
+
 		}		
 	}
 	
@@ -115,6 +120,9 @@ public class PhotoSearchController extends PhotoLibController {
 					}
 				}
 			}
+			
+			populateList(); 
+
 		}		
 	}
 	
@@ -171,6 +179,9 @@ public class PhotoSearchController extends PhotoLibController {
 					
 				}
 			}
+			
+			populateList(); 
+			
 		}		
 	}
 	
@@ -209,14 +220,24 @@ public class PhotoSearchController extends PhotoLibController {
 	}
 	
 	
-	public void start(Stage primaryStage, User currUser) {
+	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage; 
-		this.currUser = currUser; 
+		this.currUser = PhotoLibrary.currentUser; 
 		
 		ObservableList<String> tagDropDownValues = FXCollections.observableArrayList("AND", "OR");
 		tagDropDown.setItems(tagDropDownValues); 
+		// populateList(); 
+		
 	}
 	
+	private void populateList() {
+		ObservableList<ImageView> photos = FXCollections.observableArrayList(); 
+		for (String result : results) {
+			ImageView image = new ImageView(result);
+			photos.add(image); 
+		}
+		resultsList.setItems(photos);
+	}
 
 	
 	
