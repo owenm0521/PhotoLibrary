@@ -26,7 +26,7 @@ import photo_library.app.Album;
 import photo_library.app.Photo;
 import photo_library.app.User;
 
-public class photoSearchController extends PhotoLibController {
+public class PhotoSearchController extends PhotoLibController {
 	
 	@FXML Button back; 
 	@FXML DatePicker fromDateSelect; 

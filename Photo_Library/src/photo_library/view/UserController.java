@@ -33,7 +33,7 @@ public class UserController extends PhotoLibController {
 	@FXML Button deleteCurrentAlbum;
 	@FXML Button openCurrentAlbum;
 	@FXML Button renameCurrentAlbum;
-	@FXML TextField enterNewALbum;
+	@FXML TextField enterNewAlbum;
 	@FXML TextField CurrentAlbumName;
 	@FXML TextField numPhotos;
 	@FXML TextField dateRange;
@@ -68,5 +68,120 @@ public class UserController extends PhotoLibController {
 		numPhotos.setText(numphoto+"");
 		dateRange.setText(album.getMinDate() + "to" + album.getMaxDate());
 		
+	}
+	
+	public void createAlbum(ActionEvent e) {
+		if((Button)e.getSource() == createNewAlbum) {
+			if(!enterNewAlbum.getText().isEmpty()) {
+				String new_album = enterNewAlbum.getText();
+				if(currentUser.searchAlbums(new_album) != null) {
+					incorrectInfoError("Duplicate Album", "There is another album with this name. Please choose a different name");
+					return;
+				}
+				Album temp = new Album(new_album);
+				albums.add(temp);
+				updateAlbumList();
+				currentUser.setAlbums(albums);
+				
+			}
+		}
+	}
+	
+	public void updateAlbumList() {
+		ObservableList<String> albumNames = FXCollections.observableArrayList();
+		for(Album a: albums) {
+			albumNames.add(a.getName());
+		}
+		
+		albumList.setItems(albumNames);
+	}
+	
+	public void renameAlbum(ActionEvent e) {
+		if((Button)e.getSource() == renameCurrentAlbum) {
+			if(CurrentAlbumName.getText().isEmpty()) {
+				incorrectInfoError("Empty Name","You did not provide a name for your album");
+				return;
+			}
+			String current = albumList.getSelectionModel().getSelectedItem();
+			String new_name = CurrentAlbumName.getText();
+			if(!current.equals(new_name)) {
+				if(currentUser.searchAlbums(new_name)!=null) {
+					incorrectInfoError("Duplicate Album","There is another album with this name. Please choose a different name");
+					return;
+				}
+				Album currentAlbum = null;
+				currentAlbum = currentUser.searchAlbums(current);
+				albums.remove(currentAlbum);
+				currentAlbum.rename(new_name);
+				updateAlbumList();
+				albumList.getSelectionModel().select(new_name);
+			}
+		}
+	}
+	
+	public void deleteAlbum(ActionEvent e) {
+		if((Button)e.getSource()==deleteCurrentAlbum) {
+		int index = albumList.getSelectionModel().getSelectedIndex();
+		if(index == -1) {
+			return;
+		}
+		for(int i = 0;i<currentUser.getAlbums().size();i++) {
+			if(currentUser.getAlbums().get(i).getName().equals(albums.get(index)))
+			{
+				currentUser.getAlbums().remove(i);
+				break;
+			}
+		}
+		albums.remove(index);
+		updateAlbumList();
+		if(index == 0) {
+			index = 1;
+		}
+		updateAlbumList();
+		albumList.getSelectionModel().select(index-1);
+		if(albums.size() <= 0) {
+			CurrentAlbumName.clear();
+			dateRange.clear();
+			numPhotos.clear();
+		}
+	}
+	}
+	
+	public void openAlbum(ActionEvent e) throws Exception {
+		if((Button)e.getSource() == openCurrentAlbum) {
+			String name = albumList.getSelectionModel().getSelectedItem();
+			if(name == null || name == "") {
+				return;
+			}
+			Album currentAlbum = currentUser.searchAlbums(name);
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/photo_library/view/albumPage.fxml"));
+			AnchorPane root = (AnchorPane)loader.load();
+			AlbumPageController albumController = loader.getController();
+			
+			albumController.start(mainStage, currentAlbum, currentUser);
+
+			Scene scene = new Scene(root);
+			mainStage.setScene(scene);
+			mainStage.setTitle(currentAlbum.getName());
+			mainStage.setResizable(false);
+			mainStage.show();
+			
+		}
+	}
+	
+	public void search() throws Exception {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/photo_library/view/albumPage.fxml"));
+		AnchorPane root = (AnchorPane)loader.load();
+		PhotoSearchController searchController = loader.getController();
+		
+		searchController.start(mainStage, currentUser);
+
+		Scene scene = new Scene(root);
+		mainStage.setScene(scene);
+		mainStage.setTitle("Login");
+		mainStage.setResizable(false);
+		mainStage.show();
 	}
 }

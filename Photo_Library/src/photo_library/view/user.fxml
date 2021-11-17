@@ -17,9 +17,9 @@
       </Text>
       <ListView fx:id="albumList" layoutX="32.0" layoutY="110.0" prefHeight="276.0" prefWidth="267.0" />
       <TextField fx:id="newAlbumName" layoutX="439.0" layoutY="171.0" prefHeight="26.0" prefWidth="158.0" />
-      <Button fx:id="createNewAlbum" layoutX="428.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Create" />
-      <Button fx:id="deleteCurrentAlbum" layoutX="518.0" layoutY="388.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Delete " />
-      <Button fx:id="openCurrentAlbum" layoutX="428.0" layoutY="388.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Open" />
+      <Button fx:id="createNewAlbum" layoutX="428.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Create" onAction="#createAlbum" />
+      <Button fx:id="deleteCurrentAlbum" layoutX="518.0" layoutY="388.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Delete " onAction="#deleteALbum"/>
+      <Button fx:id="openCurrentAlbum" layoutX="428.0" layoutY="388.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Open" onAction="#openAlbum"/>
       <Text fx:id="newAlbumHeader" layoutX="324.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Album">
          <font>
             <Font size="16.0" />
@@ -29,8 +29,8 @@
             <Font size="16.0" />
          </font></Text>
       <TextField fx:id="currentAlbumName" layoutX="439.0" layoutY="290.0" prefHeight="26.0" prefWidth="158.0" />
-      <Button fx:id="renameCurrentAlbum" layoutX="333.0" layoutY="388.0" mnemonicParsing="false" text="Rename" />
-      <Button layoutX="130.0" layoutY="401.0" mnemonicParsing="false" text="Search All" />
+      <Button fx:id="renameCurrentAlbum" layoutX="333.0" layoutY="388.0" mnemonicParsing="false" text="Rename" onAction="#renameAlbum"/>
+      <Button layoutX="130.0" layoutY="401.0" mnemonicParsing="false" text="Search All" onAction="#search"/>
       <TextField fx:id="numPhotos" layoutX="439.0" layoutY="322.0" prefHeight="26.0" prefWidth="158.0" />
       <TextField fx:id="dateRange" layoutX="439.0" layoutY="354.0" prefHeight="26.0" prefWidth="158.0" />
       <Text fx:id="numPhotosHeader" layoutX="324.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Photos:" />
