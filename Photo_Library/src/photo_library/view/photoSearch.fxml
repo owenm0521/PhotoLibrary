@@ -29,7 +29,7 @@
       </Text>
       <DatePicker fx:id="fromDateSelect" layoutX="66.0" layoutY="93.0" prefHeight="26.0" prefWidth="206.0" promptText="From:" />
       <DatePicker fx:id="toDateSelect" layoutX="66.0" layoutY="134.0" prefHeight="26.0" prefWidth="206.0" promptText="To:" />
-      <Button fx:id="searchByDate" layoutX="91.0" layoutY="172.0" mnemonicParsing="false" text="Search Photos by Dates" onAction="searchByDate"/>
+      <Button fx:id="searchByDate" layoutX="91.0" layoutY="172.0" mnemonicParsing="false" text="Search Photos by Dates" onAction="#searchByDate"/>
       <Text fx:id="tagHeader" layoutX="39.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tag">
          <font>
             <Font size="16.0" />

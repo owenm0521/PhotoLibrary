@@ -28,11 +28,18 @@ import photo_library.app.*;
 public class AlbumPageController extends PhotoLibController {
 	User currentUser;
 	Album album;
+	
+	@FXML Button back;
+	@FXML Button;
+	@fXML Button;
+	
 	public void start(Stage primaryStage, Album current, User currentUser) {
 		this.currentUser = currentUser;
 		album = current;
 		mainStage = primaryStage;
 	}
 	
-	
+	public void back(ActionEvent e) {
+		if((Button)e.getSource() == back)
+	}
 }
