@@ -52,7 +52,7 @@ public class PhotoSearchController extends PhotoLibController {
 	private Stage primaryStage;
 	
 	
-	private void back(ActionEvent e) throws IOException {
+	public void back(ActionEvent e) throws IOException {
 		if((Button)e.getSource() == back) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/photo_library/view/user.fxml"));
@@ -67,7 +67,7 @@ public class PhotoSearchController extends PhotoLibController {
 		}
 	}
 	
-	private void searchByDate(ActionEvent e) {
+	public void searchByDate(ActionEvent e) {
 		if((Button)e.getSource() == searchByDate) {
 			LocalDate localDateFrom = fromDateSelect.getValue();
 			LocalDate localDateTo = toDateSelect.getValue();
@@ -100,7 +100,7 @@ public class PhotoSearchController extends PhotoLibController {
 		}		
 	}
 	
-	private void searchByTagSingle(ActionEvent e) {
+	public void searchByTagSingle(ActionEvent e) {
 		if((Button)e.getSource() == tagSearchSingle) {
 			if(tagTypeSingle.getText().equals("")||tagValueSingle.getText().equals("")) {
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -127,7 +127,7 @@ public class PhotoSearchController extends PhotoLibController {
 	}
 	
 	
-	private void searchByTagDouble(ActionEvent e) {
+	public void searchByTagDouble(ActionEvent e) {
 		if((Button)e.getSource() == tagSearchDouble) {
 			if(tagTypeDouble1.getText().equals("")||tagValueDouble1.getText().equals("")
 					|| tagTypeDouble2.getText().equals("")||tagValueDouble2.getText().equals("")) {
@@ -185,7 +185,7 @@ public class PhotoSearchController extends PhotoLibController {
 		}		
 	}
 	
-	private void createNewAlbum(ActionEvent e) {
+	public void createNewAlbum(ActionEvent e) {
 		if((Button)e.getSource() == createNewAlbum) {
 			if(enterAlbumName.getText().equals("") ){
 				Alert alert = new Alert(AlertType.INFORMATION);
