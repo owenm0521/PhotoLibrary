@@ -174,7 +174,7 @@ public class UserController extends PhotoLibController {
 	
 	public void search() throws Exception {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/photo_library/view/albumPage.fxml"));
+		loader.setLocation(getClass().getResource("/photo_library/view/photoSearch.fxml"));
 		AnchorPane root = (AnchorPane)loader.load();
 		PhotoSearchController searchController = loader.getController();
 		
