@@ -16,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import photo_library.app.Album;
 import photo_library.app.Photo;
+import photo_library.app.PhotoLibrary;
 import photo_library.app.User;
 
 public class AlbumsListController extends PhotoLibController {
@@ -66,6 +67,7 @@ public class AlbumsListController extends PhotoLibController {
 			return; 
 		}
 	}
+	/* 
 	
 	private void back(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == back) {
@@ -73,7 +75,11 @@ public class AlbumsListController extends PhotoLibController {
 			loader.setLocation(getClass().getResource("/photo_library/view/albumPage.fxml"));
 			AnchorPane root = (AnchorPane)loader.load();
 			AlbumPageController controller = loader.getController();
+<<<<<<< HEAD:Photo_Library/src/photo_library/view/albumsListController.java
+			controller.start(primaryStage);
+=======
 			controller.start(primaryStage, prevAlbum, currUser);
+>>>>>>> 16e6f8213a5da2d404a5faa0b52493aa01976388:Photo_Library/src/photo_library/view/AlbumsListController.java
 	
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
@@ -81,11 +87,12 @@ public class AlbumsListController extends PhotoLibController {
 			primaryStage.show();
 		}
 	}
+	*/ 
 	
 	
-	public void start(Stage primaryStage, User currUser, Album prevAlbum, Photo selectedPhoto) {
+	public void start(Stage primaryStage, Album prevAlbum, Photo selectedPhoto) {
 		this.primaryStage = primaryStage; 
-		this.currUser = currUser; 
+		this.currUser = PhotoLibrary.currentUser; 
 		this.prevAlbum = prevAlbum;
 		this.selectedPhoto = selectedPhoto; 
 		

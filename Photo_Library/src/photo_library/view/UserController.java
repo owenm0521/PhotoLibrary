@@ -147,6 +147,8 @@ public class UserController extends PhotoLibController {
 	}
 	}
 	
+	/* 
+	
 	public void openAlbum(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == openCurrentAlbum) {
 			String name = albumList.getSelectionModel().getSelectedItem();
@@ -169,6 +171,7 @@ public class UserController extends PhotoLibController {
 			
 		}
 	}
+	*/ 
 	
 	public void search() throws Exception {
 		FXMLLoader loader = new FXMLLoader();
@@ -176,7 +179,7 @@ public class UserController extends PhotoLibController {
 		AnchorPane root = (AnchorPane)loader.load();
 		PhotoSearchController searchController = loader.getController();
 		
-		searchController.start(mainStage, currentUser);
+		searchController.start(mainStage);
 
 		Scene scene = new Scene(root);
 		mainStage.setScene(scene);
