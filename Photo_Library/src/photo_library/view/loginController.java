@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import photo_library.app.*;
 
 public class loginController extends PhotoLibController {
-	ArrayList<User> users = new ArrayList<User>();
 	
 	@FXML Button enter;
 	@FXML Button exit;
@@ -20,8 +19,6 @@ public class loginController extends PhotoLibController {
 	Stage mainStage;
 	
 	public void start(Stage PrimaryStage) throws Exception {
-		Admin admin = new Admin();
-		users = admin.getUsers();
 		mainStage = PrimaryStage;
 		
 	}
@@ -46,10 +43,7 @@ public class loginController extends PhotoLibController {
 				mainStage.show();
 				dne = true;
 			}
-			for(User u: users) {
-				System.out.println(u.getUser());
-				if(u.getUser().equals(new_user)) {
-					FXMLLoader loader = new FXMLLoader();
+			if(PhotoLibrary.getUser(new_user) != null) {FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(getClass().getResource("/photo_library/view/user.fxml"));
 					System.out.println("starting to load");
 					AnchorPane root = (AnchorPane)loader.load();
@@ -64,7 +58,6 @@ public class loginController extends PhotoLibController {
 					mainStage.setResizable(false);
 					mainStage.show();
 					dne=true;
-				}
 			}
 			if(!dne) {
 				incorrectInfoError("Incorrect Username", "No username in database");
