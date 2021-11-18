@@ -30,12 +30,9 @@ public abstract class PhotoLibController {
 	
 	public void logout(ActionEvent e) throws Exception{
 		if ((Button)e.getSource() == logout) {
-			System.out.println("Logging out");
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/photo_library/view/login.fxml"));
-			System.out.println("starting to load");
 			AnchorPane root = (AnchorPane)loader.load();
-			System.out.println("loaded pane");
 			loginController photoController = loader.getController();
 			
 			photoController.start(mainStage);
