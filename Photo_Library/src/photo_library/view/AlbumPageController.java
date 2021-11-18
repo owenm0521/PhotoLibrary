@@ -52,7 +52,7 @@ public class AlbumPageController extends PhotoLibController {
 	@FXML ImageView selectedPhotoView;
 	
 	
-	public void start(Stage primaryStage, Album current, User currentUser) {
+	public void start(Stage primaryStage, Album current, User currentUser) throws FileNotFoundException {
 		this.currentUser = currentUser;
 		album = current;
 		mainStage = primaryStage;
@@ -66,21 +66,26 @@ public class AlbumPageController extends PhotoLibController {
 		addImages();
 		
 		photoList.getSelectionModel().selectedIndexProperty().addListener((obs, oldVal, newVal) -> {
-			updatePhoto();
+			try {
+				updatePhoto();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 
-		// select the first item the first time the window opens
 		photoList.getSelectionModel().select(0);
 	}
 	
 	public void updatePhoto() throws Exception {
 		int index = photoList.getSelectionModel().getSelectedIndex();
 		if (index == -1) {
+			System.out.println("failed out");
 			return;
 		}
 		Photo photo = null;
 		for(Photo p: album.getPhotos()) {
-			if(p.getPath().equals(p.getPath())){
+			if(p.getPath().equals(photos.get(index))){
 				photo = p;
 				break;
 			}
@@ -113,7 +118,13 @@ public class AlbumPageController extends PhotoLibController {
                     	}
                     }
                     Image temp1 = null;
-                    InputStream stream = new FileInputStream(temp.getPath());
+                    InputStream stream = null;
+					try {
+						stream = new FileInputStream(temp.getPath());
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					temp1 = new Image(stream);
 					imageView.setImage(temp1);
 					imageView.setFitHeight(100);
@@ -127,7 +138,7 @@ public class AlbumPageController extends PhotoLibController {
 	}
 		
 	
-	public void back(ActionEvent e) {
+	public void back(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == back) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/photo_library/view/user.fxml"));
@@ -140,10 +151,9 @@ public class AlbumPageController extends PhotoLibController {
 
 			Scene scene = new Scene(root);
 			mainStage.setScene(scene);
-			mainStage.setTitle(new_user);
+			mainStage.setTitle(currentUser.getUser());
 			mainStage.setResizable(false);
 			mainStage.show();
-			dne=true;
 		}
 	}
 	

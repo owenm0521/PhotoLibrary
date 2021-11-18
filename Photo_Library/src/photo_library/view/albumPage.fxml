@@ -45,12 +45,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-<<<<<<< HEAD
       <ComboBox fx:id="tag" editable="true" layoutX="348.0" layoutY="583.0" prefHeight="26.0" prefWidth="133.0" promptText="Tag" />
       <Button fx:id="back" layoutX="32.0" layoutY="632.0" mnemonicParsing="false" onAction="#logout" text="Back" />
-=======
-      <ComboBox fx:id="tag" layoutX="348.0" layoutY="583.0" prefHeight="26.0" prefWidth="133.0" promptText="Tag" />
-      <Button fx:id="back" layoutX="32.0" layoutY="632.0" mnemonicParsing="false" text="Back" onAction="#back"/>
->>>>>>> c22538d4f11fb1f42599e1b729cbf76df36371fd
    </children>
 </AnchorPane>

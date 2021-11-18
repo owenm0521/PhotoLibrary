@@ -60,13 +60,13 @@ public class PhotoLibrary extends Application implements Serializable{
 //		users.add(stock);
 //		Album stockAlbum = new Album("stock");
 //		stock.getAlbums().add(stockAlbum);
-//		Photo donutPhoto = new Photo("./data/cat.png");
+//		Photo donutPhoto = new Photo("./data/cat.jpg");
 //		donutPhoto.setCaption("Cat");
 //		stockAlbum.addPhoto(donutPhoto);
 //		Photo mcQueenPhoto = new Photo("./data/dog.png");
 //		mcQueenPhoto.setCaption("dog");
 //		stockAlbum.addPhoto(mcQueenPhoto);
-//		Photo nemoPhoto = new Photo("./data/elmo.jpeg");
+//		Photo nemoPhoto = new Photo("./data/elmo.jpg");
 //		nemoPhoto.setCaption("elmo");
 //		stockAlbum.addPhoto(nemoPhoto);
 //		
