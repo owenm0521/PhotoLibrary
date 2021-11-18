@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photo_library.view.UserController">
    <children>
-      <Button fx:id="logout" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Logout" />
+      <Button fx:id="logout" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Logout" onAction="#logout"/>
       <Text fx:id="albumListHeader" layoutX="126.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Albums" wrappingWidth="79.26953125">
          <font>
             <Font size="24.0" />
