@@ -272,7 +272,35 @@ public class AlbumPageController extends PhotoLibController {
 		
 	}
 	
-	public void saveCaption() {
+	public void saveCaption(ActionEvent e) {
+		if((Button)e.getSource() == saveCaption) {
+			int index = photoList.getSelectionModel().getSelectedIndex();
+			if(index==-1) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error");
+				alert.setHeaderText("Select a photo fucker.");
+				alert.showAndWait();
+				return;
+			}
+			if(captionView.getText() == null) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Invalid Caption");
+				alert.setHeaderText("Please enter a valid caption.");
+				alert.showAndWait();
+				return;
+			}
+			for (Photo photo : album.getPhotos()) {
+				if(photo.getPath().equals(photos.get(index))) {
+					photo.setCaption(captionView.getText());
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Great success!");
+					alert.setHeaderText("Caption successfully saved.");
+					alert.showAndWait();
+					return;
+				}
+			}
+			
+		}
 		
 	}
 }
