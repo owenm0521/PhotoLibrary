@@ -40,6 +40,7 @@ public class AlbumPageController extends PhotoLibController {
 	
 	@FXML Button back;
 	@FXML Button moveOrCopyPhoto;
+	@FXML Button deletePhoto; 
 	@FXML Button createNewTag;
 	@FXML Button deleteTag;
 	@FXML Button addPhoto;
@@ -52,7 +53,14 @@ public class AlbumPageController extends PhotoLibController {
 	@FXML TextField captionView;
 	@FXML ImageView selectedPhotoView;
 	
-	
+	/**
+	 * Initializes the album page with the thumbnails of each image in a list. It selects the first 
+	 * image and displays the details of the photo as well as the photo itself.
+	 * @param primaryStage current window
+	 * @param current 
+	 * @param currentUser
+	 * @throws FileNotFoundException
+	 */
 	public void start(Stage primaryStage, Album current, User currentUser) throws FileNotFoundException {
 		this.currentUser = currentUser;
 		album = current;
@@ -78,6 +86,10 @@ public class AlbumPageController extends PhotoLibController {
 		photoList.getSelectionModel().select(0);
 	}
 	
+	/**
+	 * displays selected photo
+	 * @throws Exception
+	 */
 	public void updatePhoto() throws Exception {
 		int index = photoList.getSelectionModel().getSelectedIndex();
 		if (index == -1) {
@@ -110,6 +122,10 @@ public class AlbumPageController extends PhotoLibController {
         
 	}
 		
+	/**
+	 * populates photo list
+	 * @throws FileNotFoundException
+	 */
 	public void addImages() throws FileNotFoundException{
 		photoList.setCellFactory(param -> new ListCell<String>(){
 			private ImageView imageView = new ImageView();
@@ -147,7 +163,11 @@ public class AlbumPageController extends PhotoLibController {
 	});
 	}
 		
-	
+	/**
+	 * takes user back to previous page 
+	 * @param e back button
+	 * @throws Exception
+	 */
 	public void back(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == back) {
 			FXMLLoader loader = new FXMLLoader();
@@ -167,24 +187,31 @@ public class AlbumPageController extends PhotoLibController {
 		}
 	}
 	
-	public void moveOrCopyPhoto() throws Exception {
-		int index = photoList.getSelectionModel().getSelectedIndex();
-		if (index == -1)
-			return;
-		Photo photo = album.findPhoto(photos.get(index));
-		// goes to Move or Copy Page, passing current album and selected photo as parameters
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(
-				getClass().getResource("/photo_library/view/albumsList.fxml"));
-		AnchorPane root = loader.load();
-		AlbumsListController moveController = loader.getController();
-		
-		moveController.start(mainStage, album, photo);
-
-		Scene scene = new Scene(root);
-		mainStage.setScene(scene);
-		mainStage.setResizable(false);
-		mainStage.show();
+	/**
+	 * takes user to albums list page to choose album for moving/copying selected photo
+	 * @param e move/copy photo button
+	 * @throws Exception
+	 */
+	public void moveOrCopyPhoto(ActionEvent e) throws Exception {
+		if((Button)e.getSource() == moveOrCopyPhoto) {
+			int index = photoList.getSelectionModel().getSelectedIndex();
+			if (index == -1)
+				return;
+			Photo photo = album.findPhoto(photos.get(index));
+			// goes to Move or Copy Page, passing current album and selected photo as parameters
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					getClass().getResource("/photo_library/view/albumsList.fxml"));
+			AnchorPane root = loader.load();
+			AlbumsListController moveController = loader.getController();
+			
+			moveController.start(mainStage, album, photo);
+	
+			Scene scene = new Scene(root);
+			mainStage.setScene(scene);
+			mainStage.setResizable(false);
+			mainStage.show();
+		}
 	}
 	
 	
@@ -192,87 +219,111 @@ public class AlbumPageController extends PhotoLibController {
 		
 	}
 
-	public void deletePhoto() {
-		int index = photoList.getSelectionModel().getSelectedIndex();
-		if(index==-1) {
-			return;
-		}
-		for(Photo p: album.getPhotos()) {
-			if(p.getPath().equals(photos.get(index))){
-				album.getPhotos().remove(p);
-				break;
+	/**
+	 * deletes selected photo from album
+	 * @param e delete photo button
+	 */
+	public void deletePhoto(ActionEvent e) {
+		if((Button)e.getSource() == moveOrCopyPhoto) {
+			int index = photoList.getSelectionModel().getSelectedIndex();
+			if(index==-1) {
+				return;
 			}
-		}
-		photos.remove(index);
-		photoList.getSelectionModel().select(index);
-		if(photos.size() <= 0) {
-			dateView.clear();
-			captionView.clear();
-			selectedPhotoView.setImage(null);
-			photoTagsView.setItems(null);
-			value.clear();
+			for(Photo p: album.getPhotos()) {
+				if(p.getPath().equals(photos.get(index))){
+					album.getPhotos().remove(p);
+					break;
+				}
+			}
+			photos.remove(index);
+			photoList.getSelectionModel().select(index);
+			if(photos.size() <= 0) {
+				dateView.clear();
+				captionView.clear();
+				selectedPhotoView.setImage(null);
+				photoTagsView.setItems(null);
+				value.clear();
+			}
 		}
 	}
 	
-	public void createNewTag() throws Exception {
-		if(tag.getValue() == null || value.getText().isEmpty()) {
-			return;
-		}
-		int index = photoList.getSelectionModel().getSelectedIndex();
-		if(index == -1) {
-			return;
-		}
-		Photo photo = album.findPhoto(photos.get(index));
-		if(tag.getValue().equals("Location") && photo.getTags().containsKey("Location")) {
-			incorrectInfoError("Location Error","Location can only have one value.");
-			return;
-		}
-		if(photo.getTags().containsKey(tag.getValue()) && photo.getTags().get(tag.getValue()).contains(value.getText())){
-			incorrectInfoError("Duplicate Value", "This tag already has that value");
-			return;
-		}
-		if(!photo.getTags().containsKey(tag.getValue())) {
-			photo.getTags().put(tag.getValue().toString(), new ArrayList<String>());
-			if(!currentUser.getTags().contains(tag.getValue())) {
-				currentUser.getTags().add(tag.getValue().toString());
-				
+	/**
+	 * creates new tag for selected photo 
+	 * @param e create new tag button
+	 * @throws Exception
+	 */
+	public void createNewTag(ActionEvent e) throws Exception {
+		if((Button)e.getSource() == createNewTag) {
+			if(tag.getValue() == null || value.getText().isEmpty()) {
+				return;
 			}
+			int index = photoList.getSelectionModel().getSelectedIndex();
+			if(index == -1) {
+				return;
+			}
+			Photo photo = album.findPhoto(photos.get(index));
+			if(tag.getValue().equals("Location") && photo.getTags().containsKey("Location")) {
+				incorrectInfoError("Location Error","Location can only have one value.");
+				return;
+			}
+			if(photo.getTags().containsKey(tag.getValue()) && photo.getTags().get(tag.getValue()).contains(value.getText())){
+				incorrectInfoError("Duplicate Value", "This tag already has that value");
+				return;
+			}
+			if(!photo.getTags().containsKey(tag.getValue())) {
+				photo.getTags().put(tag.getValue().toString(), new ArrayList<String>());
+				if(!currentUser.getTags().contains(tag.getValue())) {
+					currentUser.getTags().add(tag.getValue().toString());
+					
+				}
+			}
+			photo.getTags().get(tag.getValue().toString()).add(value.getText());
+			photoTags = FXCollections.observableArrayList();
+			for(String key:photo.getTags().keySet()) {
+				photoTags.add(key +" | " + photo.getTags().get(key));
+			}
+			photoTagsView.setItems(photoTags);
+			
+			updatePhoto();
 		}
-		photo.getTags().get(tag.getValue().toString()).add(value.getText());
-		photoTags = FXCollections.observableArrayList();
-		for(String key:photo.getTags().keySet()) {
-			photoTags.add(key +" | " + photo.getTags().get(key));
+	}
+	
+	/**
+	 * deletes selected tag from selected photo
+	 * @param e delete tag button
+	 * @throws Exception
+	 */
+	public void deleteTag(ActionEvent e) throws Exception {
+		if((Button)e.getSource() == deleteTag) {
+			if(tag.getValue() == null || value.getText().isEmpty()) {
+				return;
+			}
+			int index = photoList.getSelectionModel().getSelectedIndex();
+			if (index == -1) {
+				return;
+			}
+			Photo photo = album.findPhoto(photos.get(index));
+			if(photo.getTags().containsKey(tag.getValue().toString())) {
+				photo.getTags().get(tag.getValue().toString()).remove(value.getText());
+				if(photo.getTags().get(tag.getValue().toString()).size() == 0) {
+					photo.getTags().remove(tag.getValue().toString());
+				}
+			}
+			photo.getTags().get(tag.getValue().toString()).add(value.getText());
+			photoTags = FXCollections.observableArrayList();
+			for(String key:photo.getTags().keySet()) {
+				photoTags.add(key +" | " + photo.getTags().get(key));
+			}
+			photoTagsView.setItems(photoTags);
+			updatePhoto();
 		}
-		photoTagsView.setItems(photoTags);
 		
-		updatePhoto();
 	}
 	
-	public void deleteTag() throws Exception {
-		if(tag.getValue() == null || value.getText().isEmpty()) {
-			return;
-		}
-		int index = photoList.getSelectionModel().getSelectedIndex();
-		if (index == -1) {
-			return;
-		}
-		Photo photo = album.findPhoto(photos.get(index));
-		if(photo.getTags().containsKey(tag.getValue().toString())) {
-			photo.getTags().get(tag.getValue().toString()).remove(value.getText());
-			if(photo.getTags().get(tag.getValue().toString()).size() == 0) {
-				photo.getTags().remove(tag.getValue().toString());
-			}
-		}
-		photo.getTags().get(tag.getValue().toString()).add(value.getText());
-		photoTags = FXCollections.observableArrayList();
-		for(String key:photo.getTags().keySet()) {
-			photoTags.add(key +" | " + photo.getTags().get(key));
-		}
-		photoTagsView.setItems(photoTags);
-		updatePhoto();
-		
-	}
-	
+	/**
+	 * saves inputted caption to selected photo 
+	 * @param e save caption button 
+	 */
 	public void saveCaption(ActionEvent e) {
 		if((Button)e.getSource() == saveCaption) {
 			int index = photoList.getSelectionModel().getSelectedIndex();

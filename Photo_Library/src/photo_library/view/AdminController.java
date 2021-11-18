@@ -34,6 +34,11 @@ public class AdminController extends PhotoLibController {
 	@FXML Button deleteUser;
 	private ObservableList<String> usernames;
 	
+	/**
+	 * sets up current window
+	 * @param primaryStage current window
+	 * @throws Exception
+	 */
 	public void start(Stage primaryStage) throws Exception {
 		System.out.println("Admin page loading");
 		mainStage = primaryStage;
@@ -45,6 +50,11 @@ public class AdminController extends PhotoLibController {
 		userList.getSelectionModel().select(0);
 	}
 	
+	/**
+	 * adds user with inputted name 
+	 * @param e add user button
+	 * @throws Exception
+	 */
 	public void addUser(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == addUser) {
 			String temp = enterUsername.getText().trim();
@@ -77,6 +87,11 @@ public class AdminController extends PhotoLibController {
 		}
 	}
 	
+	/**
+	 * deletes selected user
+	 * @param e delete user button
+	 * @throws Exception
+	 */
 	public void deleteUser(ActionEvent e) throws Exception{
 		if((Button)e.getSource() == deleteUser) {
 			int index = userList.getSelectionModel().getSelectedIndex();
