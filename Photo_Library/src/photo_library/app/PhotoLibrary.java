@@ -64,21 +64,29 @@ public class PhotoLibrary extends Application implements Serializable{
 			users = temp;
 		}
 		launch(args);
-		
+//		
 //		User stock = new User("stock");
 //		users.add(stock);
 //		Album stockAlbum = new Album("stock");
 //		stock.getAlbums().add(stockAlbum);
-//		Photo donutPhoto = new Photo("./data/cat.jpg");
-//		donutPhoto.setCaption("Cat");
-//		stockAlbum.addPhoto(donutPhoto);
-//		Photo mcQueenPhoto = new Photo("./data/dog.png");
-//		mcQueenPhoto.setCaption("dog");
-//		stockAlbum.addPhoto(mcQueenPhoto);
-//		Photo nemoPhoto = new Photo("./data/elmo.jpg");
-//		nemoPhoto.setCaption("elmo");
-//		stockAlbum.addPhoto(nemoPhoto);
-//		
+//		Photo cat = new Photo("./data/cat.jpg");
+//		cat.setCaption("Cat");
+//		stockAlbum.addPhoto(cat);
+//		Photo dog = new Photo("./data/dog.png");
+//		dog.setCaption("dog");
+//		stockAlbum.addPhoto(dog);
+//		Photo elmo = new Photo("./data/elmo.jpg");
+//		elmo.setCaption("elmo");
+//		stockAlbum.addPhoto(elmo); 
+//		Photo shrek = new Photo("./data/shrek.jpg");
+//		shrek.setCaption("Shrek");
+//		stockAlbum.addPhoto(shrek);
+//		Photo santa = new Photo("./data/santa.jpg");
+//		santa.setCaption("santa");
+//		stockAlbum.addPhoto(santa);
+//		Photo beef = new Photo("./data/beef.jpg");
+//		beef.setCaption("beef");
+//		stockAlbum.addPhoto(beef);
 		storeUsers(users);
 
 	}
