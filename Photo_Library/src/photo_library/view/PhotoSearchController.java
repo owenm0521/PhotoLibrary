@@ -100,8 +100,15 @@ public class PhotoSearchController extends PhotoLibController {
 				}
 			}
 			
-			populateList(); 
-
+			if(results.isEmpty()) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle(":(");
+				alert.setHeaderText("Your search yielded no results.");
+				alert.showAndWait();
+				return;
+			}else {
+				populateList();
+			} 
 		}		
 	}
 	
@@ -127,7 +134,15 @@ public class PhotoSearchController extends PhotoLibController {
 				}
 			}
 			
-			populateList(); 
+			if(results.isEmpty()) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle(":(");
+				alert.setHeaderText("Your search yielded no results.");
+				alert.showAndWait();
+				return;
+			}else {
+				populateList();
+			} 
 
 		}		
 	}
@@ -188,8 +203,15 @@ public class PhotoSearchController extends PhotoLibController {
 				}
 			}
 			
-			populateList(); 
-			
+			if(results.isEmpty()) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle(":(");
+				alert.setHeaderText("Your search yielded no results.");
+				alert.showAndWait();
+				return;
+			}else {
+				populateList();
+			} 
 		}		
 	}
 	
@@ -242,7 +264,6 @@ public class PhotoSearchController extends PhotoLibController {
 		
 		ObservableList<String> tagDropDownValues = FXCollections.observableArrayList("AND", "OR");
 		tagDropDown.setItems(tagDropDownValues); 
-		// populateList(); 
 		
 	}
 	
