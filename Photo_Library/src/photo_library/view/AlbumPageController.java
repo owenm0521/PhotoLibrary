@@ -31,6 +31,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import photo_library.app.*;
+import photos.app.Photo;
+import photos.view.MovePhotoController;
+import photos.view.VBox;
 
 public class AlbumPageController extends PhotoLibController {
 	User currentUser;
@@ -39,8 +42,7 @@ public class AlbumPageController extends PhotoLibController {
 	ObservableList<String> photoTags;
 	
 	@FXML Button back;
-	@FXML Button movePhoto;
-	@FXML Button copyPhoto;
+	@FXML Button moveOrCopyPhoto;
 	@FXML Button createNewTag;
 	@FXML Button deleteTag;
 	@FXML Button addPhoto;
@@ -159,13 +161,26 @@ public class AlbumPageController extends PhotoLibController {
 		}
 	}
 	
-	public void movePhoto() {
+	public void moveOrCopyPhoto() {
+		int index = photoList.getSelectionModel().getSelectedIndex();
+		if (index == -1)
+			return;
+		Photo photo = album.findPhoto(photos.get(index));
+		// goes to Move or Copy Page, passing current album and selected photo as parameters
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(
+				getClass().getResource("/photos/view/albumsList.fxml"));
+		AnchorPane root = loader.load();
+		AlbumsListController moveController = loader.getController();
 		
+		moveController.start(mainStage, album, photo);
+
+		Scene scene = new Scene(root);
+		mainStage.setScene(scene);
+		mainStage.setResizable(false);
+		mainStage.show();
 	}
 	
-	public void copyPhoto() {
-		
-	}
 	
 	public void addPhoto() {
 		
