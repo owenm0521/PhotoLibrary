@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -47,6 +48,7 @@ public class AlbumPageController extends PhotoLibController {
 	@FXML ListView<String> photoTagsView;
 	@FXML ListView<String> photoList;
 	@FXML TextField value;
+	@FXML ComboBox tag;
 	@FXML TextField dateView;
 	@FXML TextField captionView;
 	@FXML ImageView selectedPhotoView;
@@ -170,7 +172,25 @@ public class AlbumPageController extends PhotoLibController {
 	}
 
 	public void deletePhoto() {
-		
+		int index = photoList.getSelectionModel().getSelectedIndex();
+		if(index==-1) {
+			return;
+		}
+		for(Photo p: album.getPhotos()) {
+			if(p.getPath().equals(photos.get(index))){
+				album.getPhotos().remove(p);
+				break;
+			}
+		}
+		photos.remove(index);
+		photoList.getSelectionModel().select(index);
+		if(photos.size() <= 0) {
+			dateView.clear();
+			captionView.clear();
+			selectedPhotoView.setImage(null);
+			photoTagsView.setItems(null);
+			value.clear();
+		}
 	}
 	
 	public void createNewTag() {
