@@ -67,7 +67,7 @@ public class UserController extends PhotoLibController {
 			numphoto++;
 		}
 		numPhotos.setText(numphoto+"");
-		dateRange.setText(album.getMinDate() + "to" + album.getMaxDate());
+		dateRange.setText(album.getMinDate() + " TO " + album.getMaxDate());
 		
 	}
 	

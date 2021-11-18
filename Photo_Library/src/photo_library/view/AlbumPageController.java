@@ -30,8 +30,17 @@ public class AlbumPageController extends PhotoLibController {
 	Album album;
 	
 	@FXML Button back;
-	@FXML Button;
-	@fXML Button;
+	@FXML Button movePhoto;
+	@FXML Button copyPhoto;
+	@FXML Button createNewTag;
+	@FXML Button deleteTag;
+	@FXML Button addPhoto;
+	@FXML Button saveCaption;
+	@FXML ListView<String> photoTagsView;
+	@FXML TextField value;
+	@FXML TextField dateView;
+	@FXML TextField captionView;
+	
 	
 	public void start(Stage primaryStage, Album current, User currentUser) {
 		this.currentUser = currentUser;
@@ -40,6 +49,36 @@ public class AlbumPageController extends PhotoLibController {
 	}
 	
 	public void back(ActionEvent e) {
-		if((Button)e.getSource() == back)
+		if((Button)e.getSource() == back) {
+			
+		}
+	}
+	
+	public void movePhoto() {
+		
+	}
+	
+	public void copyPhoto() {
+		
+	}
+	
+	public void addPhoto() {
+		
+	}
+
+	public void deletePhoto() {
+		
+	}
+	
+	public void createNewTag() {
+		
+	}
+	
+	public void deleteTag() {
+		
+	}
+	
+	public void saveCaption() {
+		
 	}
 }
