@@ -21,7 +21,7 @@
       <ImageView fx:id="selectedPhotoView" fitHeight="174.0" fitWidth="297.0" layoutX="345.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="addPhoto" layoutX="134.0" layoutY="604.0" mnemonicParsing="false" onAction="#addPhoto" text="Add Photo" />
       <Button fx:id="deletePhoto" layoutX="339.0" layoutY="264.0" mnemonicParsing="false" onAction="#deletePhoto" prefHeight="26.0" prefWidth="133.0" text="Delete Photo" />
-      <Button fx:id="moveOrCopyPhoto" layoutX="510.0" layoutY="265.0" mnemonicParsing="false" onAction="#movePhoto" prefHeight="26.0" prefWidth="133.0" text="Move/Copy Photo" onAction="#moveOrCopyPhoto"/>
+      <Button fx:id="moveOrCopyPhoto" layoutX="510.0" layoutY="265.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="133.0" text="Move/Copy Photo" onAction="#moveOrCopyPhoto"/>
       <TextField fx:id="dateView" layoutX="404.0" layoutY="311.0" prefHeight="26.0" prefWidth="240.0" />
       <TextField fx:id="captionView" layoutX="406.0" layoutY="358.0" prefHeight="26.0" prefWidth="167.0" />
       <ListView fx:id="photoTagsView" layoutX="337.0" layoutY="453.0" prefHeight="106.0" prefWidth="289.0" />

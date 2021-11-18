@@ -161,7 +161,7 @@ public class AlbumPageController extends PhotoLibController {
 		}
 	}
 	
-	public void moveOrCopyPhoto() {
+	public void moveOrCopyPhoto() throws Exception {
 		int index = photoList.getSelectionModel().getSelectedIndex();
 		if (index == -1)
 			return;
