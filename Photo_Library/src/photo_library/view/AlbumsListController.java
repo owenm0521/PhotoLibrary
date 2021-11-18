@@ -34,8 +34,13 @@ public class AlbumsListController extends PhotoLibController {
 	public void movePicture(ActionEvent e) {
 		if((Button)e.getSource() == moveToAlbum) {
 			int albumIndex = albumsList.getSelectionModel().getSelectedIndex();
-			if (albumIndex == -1)
+			if (albumIndex == -1) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error");
+				alert.setHeaderText("Select an album fucker.");
+				alert.showAndWait();
 				return;
+			}
 			Album dest = currUser.searchAlbums(albums.get(albumIndex)); 
 			if(dest.getName().equals(prevAlbum.getName()) || dest.findPhoto(selectedPhoto.getPath()) != null ) {
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -57,8 +62,13 @@ public class AlbumsListController extends PhotoLibController {
 	public void copyPicture(ActionEvent e) {
 		if((Button)e.getSource() == copyToAlbum) {
 			int albumIndex = albumsList.getSelectionModel().getSelectedIndex();
-			if (albumIndex == -1)
+			if (albumIndex == -1) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error");
+				alert.setHeaderText("Select an album fucker.");
+				alert.showAndWait();
 				return;
+			}
 			Album dest = currUser.searchAlbums(albums.get(albumIndex)); 
 			if(dest.getName().equals(prevAlbum.getName()) || dest.findPhoto(selectedPhoto.getPath()) != null ) {
 				Alert alert = new Alert(AlertType.INFORMATION);
