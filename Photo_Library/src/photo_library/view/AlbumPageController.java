@@ -366,7 +366,7 @@ public class AlbumPageController extends PhotoLibController {
 			if(index==-1) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Error");
-				alert.setHeaderText("Select a photo fucker.");
+				alert.setHeaderText("Select a photo.");
 				alert.showAndWait();
 				return;
 			}
