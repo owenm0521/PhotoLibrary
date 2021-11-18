@@ -1,6 +1,9 @@
 package photo_library.view;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -18,8 +21,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -43,7 +48,7 @@ public class PhotoSearchController extends PhotoLibController {
 	@FXML TextField tagTypeDouble2; 
 	@FXML TextField tagValueDouble2; 
 	@FXML Button tagSearchDouble; 
-	@FXML ListView<ImageView> resultsList; 
+	@FXML ListView<String> resultsList; 
 	@FXML TextField enterAlbumName; 
 	@FXML Button createNewAlbum; 
 	
@@ -78,7 +83,7 @@ public class PhotoSearchController extends PhotoLibController {
 				alert.showAndWait();
 				return;
 			}
-			results.clear(); 
+			results.clear();
 			
 			Instant from = Instant.from(localDateFrom.atStartOfDay(ZoneId.systemDefault()));
 			Instant to = Instant.from(localDateTo.atStartOfDay(ZoneId.systemDefault()));
@@ -203,6 +208,13 @@ public class PhotoSearchController extends PhotoLibController {
 					return;
 				}
 			}
+			if(results.isEmpty()) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Cannot Create Album");
+				alert.setHeaderText("Album cannot be created because your search yielded no results. Please enter valid search criteria and try again.");
+				alert.showAndWait();
+				return;
+			}
 			
 			Album newAlbum = new Album(enterAlbumName.getText());
 			for (Album album : currUser.getAlbums()) {
@@ -223,6 +235,7 @@ public class PhotoSearchController extends PhotoLibController {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage; 
 		this.currUser = PhotoLibrary.currentUser; 
+		this.results = FXCollections.observableArrayList(); 
 		
 		ObservableList<String> tagDropDownValues = FXCollections.observableArrayList("AND", "OR");
 		tagDropDown.setItems(tagDropDownValues); 
@@ -231,12 +244,10 @@ public class PhotoSearchController extends PhotoLibController {
 	}
 	
 	public void populateList() {
-		ObservableList<ImageView> photos = FXCollections.observableArrayList(); 
-		for (String result : results) {
-			ImageView image = new ImageView(result);
-			photos.add(image); 
-		}
-		resultsList.setItems(photos);
+		
+		resultsList.setItems(results);
+		
+		
 	}
 
 	
