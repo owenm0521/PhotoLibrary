@@ -39,6 +39,10 @@ public class UserController extends PhotoLibController {
 	@FXML TextField dateRange;
 	@FXML Button search;
 	
+	/**
+	 * sets up current window
+	 * @param primaryStage current window
+	 */
 	public void start(Stage primaryStage) {
 		mainStage = primaryStage;
 		currentUser = PhotoLibrary.currentUser;
@@ -58,6 +62,9 @@ public class UserController extends PhotoLibController {
 		albumList.getSelectionModel().select(0);
 	}
 	
+	/**
+	 * gets and displays album information for selected album
+	 */
 	public void updateAlbumInfo() {
 		int index = albumList.getSelectionModel().getSelectedIndex();
 		Album album  = albums.get(index);
@@ -71,6 +78,10 @@ public class UserController extends PhotoLibController {
 		
 	}
 	
+	/**
+	 * creates new album
+	 * @param e create new album button
+	 */
 	public void createAlbum(ActionEvent e) {
 		if((Button)e.getSource() == createNewAlbum) {
 			if(!enterNewAlbum.getText().isEmpty()) {
@@ -88,15 +99,10 @@ public class UserController extends PhotoLibController {
 		}
 	}
 	
-	public void updateAlbumList() {
-		ObservableList<String> albumNames = FXCollections.observableArrayList();
-		for(Album a: albums) {
-			albumNames.add(a.getName());
-		}
-		
-		albumList.setItems(albumNames);
-	}
-	
+	/**
+	 * renames selected album 
+	 * @param e rename button
+	 */
 	public void renameAlbum(ActionEvent e) {
 		if((Button)e.getSource() == renameCurrentAlbum) {
 			if(currentAlbumName.getText().isEmpty()) {
@@ -120,6 +126,10 @@ public class UserController extends PhotoLibController {
 		}
 	}
 	
+	/**
+	 * deletes selected album
+	 * @param e delete button
+	 */
 	public void deleteAlbum(ActionEvent e) {
 		if((Button)e.getSource()==deleteCurrentAlbum) {
 		int index = albumList.getSelectionModel().getSelectedIndex();
@@ -149,7 +159,11 @@ public class UserController extends PhotoLibController {
 	}
 	
 	
-	
+	/**
+	 * opens selected album
+	 * @param e open button
+	 * @throws Exception
+	 */
 	public void openAlbum(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == openCurrentAlbum) {
 			String name = albumList.getSelectionModel().getSelectedItem();
@@ -173,6 +187,11 @@ public class UserController extends PhotoLibController {
 		}
 	}
 	
+	/**
+	 * takes user to photo search page 
+	 * @param e search all button
+	 * @throws Exception
+	 */
 	public void search(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == search) {
 		FXMLLoader loader = new FXMLLoader();
