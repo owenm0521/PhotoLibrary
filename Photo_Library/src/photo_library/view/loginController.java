@@ -11,6 +11,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import photo_library.app.*;
 
+/**
+ * controller to initialize login page 
+ * 
+ * @author Owen Morris
+ * @author Ali Khan
+ */
 public class loginController extends PhotoLibController {
 	
 	@FXML Button enter;

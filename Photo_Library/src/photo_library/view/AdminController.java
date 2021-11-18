@@ -26,6 +26,12 @@ import java.io.PrintWriter;
 import photo_library.app.*;
 import java.io.File;
 
+/**
+ * controller to initialize admin page  
+ * 
+ * @author Owen Morris
+ * @author Ali Khan
+ */
 public class AdminController extends PhotoLibController {
 	@FXML Button logout;
 	@FXML ListView<String> userList;

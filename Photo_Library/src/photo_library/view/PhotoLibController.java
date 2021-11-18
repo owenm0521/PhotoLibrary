@@ -24,6 +24,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * superclass controller for all other controllers 
+ * 
+ * @author Owen Morris
+ * @author Ali Khan
+ */
 public abstract class PhotoLibController {
 	@FXML Button logout;
 	Stage mainStage;

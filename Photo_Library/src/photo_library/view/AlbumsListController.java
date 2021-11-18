@@ -19,6 +19,12 @@ import photo_library.app.Photo;
 import photo_library.app.PhotoLibrary;
 import photo_library.app.User;
 
+/**
+ * controller to initialize page of user's albums  
+ * 
+ * @author Owen Morris
+ * @author Ali Khan
+ */
 public class AlbumsListController extends PhotoLibController {
 	@FXML Button back; 
 	@FXML Button copyToAlbum; 

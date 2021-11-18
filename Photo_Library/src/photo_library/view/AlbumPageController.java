@@ -34,6 +34,12 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import photo_library.app.*;
 
+/**
+ * controller to initalize photo display page for a selected album 
+ * 
+ * @author Owen Morris
+ * @author Ali Khan
+ */
 public class AlbumPageController extends PhotoLibController {
 	User currentUser;
 	Album album;
