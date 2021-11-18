@@ -47,7 +47,7 @@ public class AlbumPageController extends PhotoLibController {
 	@FXML ListView<String> photoTagsView;
 	@FXML ListView<String> photoList;
 	@FXML TextField value;
-	@FXML ComboBox tag;
+	@FXML ComboBox<String> tag;
 	@FXML TextField dateView;
 	@FXML TextField captionView;
 	@FXML ImageView selectedPhotoView;
@@ -99,6 +99,15 @@ public class AlbumPageController extends PhotoLibController {
         selectedPhotoView.setPreserveRatio(true);
         dateView.setText(photo.getDate().toString());
         captionView.setText(photo.getCaption());
+        
+        photoTags = FXCollections.observableArrayList();
+        for(String key:photo.getTags().keySet()) {
+			photoTags.add(key +" | " + photo.getTags().get(key));
+		}
+		photoTagsView.setItems(photoTags);
+		tag.getItems().clear();
+		tag.getItems().addAll(currentUser.getTags());
+        
 	}
 		
 	public void addImages() throws FileNotFoundException{
@@ -206,6 +215,36 @@ public class AlbumPageController extends PhotoLibController {
 	}
 	
 	public void createNewTag() {
+		if(tag.getValue() == null || value.getText().isEmpty()) {
+			return;
+		}
+		int index = photoList.getSelectionModel().getSelectedIndex();
+		if(index == -1) {
+			return;
+		}
+		Photo photo = album.findPhoto(photos.get(index));
+		if(tag.getValue().equals("Location") && photo.getTags().containsKey("Location")) {
+			incorrectInfoError("Location Error","Location can only have one value.");
+			return;
+		}
+		if(photo.getTags().containsKey(tag.getValue()) && photo.getTags().get(tag).contains(value.getText())){
+			incorrectInfoError("Duplicate Value", "This tag already has that value");
+			return;
+		}
+		if(!photo.getTags().containsKey(tag.getValue())) {
+			photo.getTags().put(tag.getValue().toString(), new ArrayList<String>());
+			if(!currentUser.getTags().contains(tag.getValue())) {
+				currentUser.getTags().add(tag.getValue().toString());
+				
+			}
+		}
+		photo.getTags().get(tag.getValue().toString()).add(value.getText());
+		photoTags = FXCollections.observableArrayList();
+		for(String key:photo.getTags().keySet()) {
+			photoTags.add(key +" | " + photo.getTags().get(key));
+		}
+		photoTagsView.setItems(photoTags);
+		
 		
 	}
 	

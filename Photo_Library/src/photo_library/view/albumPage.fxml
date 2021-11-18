@@ -45,6 +45,6 @@
          </font>
       </Text>
       <ComboBox fx:id="tag" editable="true" layoutX="348.0" layoutY="583.0" prefHeight="26.0" prefWidth="133.0" promptText="Tag" />
-      <Button fx:id="back" layoutX="32.0" layoutY="632.0" mnemonicParsing="false" onAction="#logout" text="Back" />
+      <Button fx:id="back" layoutX="32.0" layoutY="632.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </AnchorPane>

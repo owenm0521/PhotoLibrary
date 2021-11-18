@@ -23,6 +23,7 @@ public class Photo implements Serializable{
 		date = convertTime(image.lastModified());
 		caption = "";
 		this.name = image.getName();
+		tags = new HashMap<String, ArrayList<String>>();
 	}
 	
 	public Date convertTime(long time){
