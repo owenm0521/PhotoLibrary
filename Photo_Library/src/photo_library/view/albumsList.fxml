@@ -8,14 +8,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photo_library.view.AlbumsListController">
    <children>
-      <Button fx:id="back" layoutX="14.0" layoutY="376.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="back" layoutX="14.0" layoutY="376.0" mnemonicParsing="false" text="Back" onAction="#back"/>
       <ListView fx:id="albumsList" layoutX="33.0" layoutY="62.0" prefHeight="292.0" prefWidth="388.0" />
       <Text fx:id="albumsHeader" layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Albums">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="copyToAlbum" layoutX="462.0" layoutY="161.0" mnemonicParsing="false" prefWidth="98.0" text="Copy to Album" />
-      <Button fx:id="moveToAlbum" layoutX="460.0" layoutY="215.0" mnemonicParsing="false" text="Move to Album" />
+      <Button fx:id="copyToAlbum" layoutX="462.0" layoutY="161.0" mnemonicParsing="false" prefWidth="98.0" text="Copy to Album" onAction="#copyPicture"/>
+      <Button fx:id="moveToAlbum" layoutX="460.0" layoutY="215.0" mnemonicParsing="false" text="Move to Album" onAction="#movePicture"/>
    </children>
 </AnchorPane>
