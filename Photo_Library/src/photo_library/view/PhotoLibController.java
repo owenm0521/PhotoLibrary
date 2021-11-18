@@ -24,10 +24,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * superclass controller for all other controllers 
+ * 
+ * @author Owen Morris
+ * @author Ali Khan
+ */
 public abstract class PhotoLibController {
 	@FXML Button logout;
 	Stage mainStage;
 	
+	/**
+	 * logs out of current user's account and returns to login page 
+	 * @param e logout button
+	 * @throws Exception
+	 */
 	public void logout(ActionEvent e) throws Exception{
 		if ((Button)e.getSource() == logout) {
 			FXMLLoader loader = new FXMLLoader();
@@ -45,7 +56,11 @@ public abstract class PhotoLibController {
 		}
 	}
 	
-	
+	/**
+	 * generic error method for displaying errors in other controllers 
+	 * @param content body of error message 
+	 * @param title header of error message 
+	 */
 	public void incorrectInfoError(String content, String title) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle(title);

@@ -33,6 +33,12 @@ import photo_library.app.Photo;
 import photo_library.app.PhotoLibrary;
 import photo_library.app.User;
 
+/**
+ * controller to initialize photo search page 
+ * 
+ * @author Owen Morris
+ * @author Ali Khan
+ */
 public class PhotoSearchController extends PhotoLibController {
 	
 	@FXML Button back; 
