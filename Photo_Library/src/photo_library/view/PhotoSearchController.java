@@ -247,8 +247,6 @@ public class PhotoSearchController extends PhotoLibController {
 	}
 	
 	public void populateList() {
-		/*
-		
 		resultsList.setCellFactory(param -> new ListCell<String>(){
 			private ImageView imageView = new ImageView();
             @Override
@@ -285,7 +283,6 @@ public class PhotoSearchController extends PhotoLibController {
                 }
 		}
 	});
-	*/ 
 		
 		resultsList.setItems(results);
 		
