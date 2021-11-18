@@ -31,9 +31,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import photo_library.app.*;
-import photos.app.Photo;
-import photos.view.MovePhotoController;
-import photos.view.VBox;
 
 public class AlbumPageController extends PhotoLibController {
 	User currentUser;
@@ -169,7 +166,7 @@ public class AlbumPageController extends PhotoLibController {
 		// goes to Move or Copy Page, passing current album and selected photo as parameters
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(
-				getClass().getResource("/photos/view/albumsList.fxml"));
+				getClass().getResource("/photo_library/view/albumsList.fxml"));
 		AnchorPane root = loader.load();
 		AlbumsListController moveController = loader.getController();
 		
