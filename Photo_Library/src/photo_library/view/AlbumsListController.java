@@ -46,6 +46,10 @@ public class AlbumsListController extends PhotoLibController {
 			}
 			dest.addPhoto(selectedPhoto);
 			prevAlbum.removePhoto(selectedPhoto.getPath());
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Great success!");
+			alert.setHeaderText("Photo successfully moved from " + prevAlbum.getName() + " to " + dest.getName() + ".");
+			alert.showAndWait();
 			return; 
 		}
 	}
@@ -64,6 +68,10 @@ public class AlbumsListController extends PhotoLibController {
 				return;
 			}
 			dest.addPhoto(selectedPhoto);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Great success!");
+			alert.setHeaderText("Photo successfully copied to " + dest.getName() + ".");
+			alert.showAndWait();
 			return; 
 		}
 	}
