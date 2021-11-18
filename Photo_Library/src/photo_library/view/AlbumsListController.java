@@ -30,7 +30,10 @@ public class AlbumsListController extends PhotoLibController {
 	private User currUser; 
 	private Stage primaryStage; 
 	
-	
+	/**
+	 * moves selected photo to selected album
+	 * @param e move to album button
+	 */
 	public void movePicture(ActionEvent e) {
 		if((Button)e.getSource() == moveToAlbum) {
 			int albumIndex = albumsList.getSelectionModel().getSelectedIndex();
@@ -59,6 +62,10 @@ public class AlbumsListController extends PhotoLibController {
 		}
 	}
 	
+	/**
+	 * copies selected photo to album
+	 * @param e copy to album button
+	 */
 	public void copyPicture(ActionEvent e) {
 		if((Button)e.getSource() == copyToAlbum) {
 			int albumIndex = albumsList.getSelectionModel().getSelectedIndex();
@@ -86,7 +93,11 @@ public class AlbumsListController extends PhotoLibController {
 		}
 	}
 
-	
+	/**
+	 * takes user back to previous page 
+	 * @param e back button
+	 * @throws Exception
+	 */
 	public void back(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == back) {
 			FXMLLoader loader = new FXMLLoader();
@@ -101,7 +112,12 @@ public class AlbumsListController extends PhotoLibController {
 		}
 	}
 	
-	
+	/**
+	 * sets up current window 
+	 * @param primaryStage current window
+	 * @param prevAlbum album from which photo to be moved/copied was selected
+	 * @param selectedPhoto photo to be moved/copied
+	 */
 	public void start(Stage primaryStage, Album prevAlbum, Photo selectedPhoto) {
 		this.primaryStage = primaryStage; 
 		this.currUser = PhotoLibrary.currentUser; 

@@ -57,6 +57,11 @@ public class PhotoSearchController extends PhotoLibController {
 	private Stage primaryStage;
 	
 	
+	/**
+	 * takes user back to previous page 
+	 * @param e back button
+	 * @throws IOException
+	 */
 	public void back(ActionEvent e) throws IOException {
 		if((Button)e.getSource() == back) {
 			FXMLLoader loader = new FXMLLoader();
@@ -72,6 +77,10 @@ public class PhotoSearchController extends PhotoLibController {
 		}
 	}
 	
+	/**
+	 * searches all photos by user inputted date range 
+	 * @param e search by date button
+	 */
 	public void searchByDate(ActionEvent e) {
 		if((Button)e.getSource() == searchByDate) {
 			LocalDate localDateFrom = fromDateSelect.getValue();
@@ -112,6 +121,10 @@ public class PhotoSearchController extends PhotoLibController {
 		}		
 	}
 	
+	/**
+	 * searches all photos by user inputted tag-value pair 
+	 * @param e search by single tag-value pair button
+	 */
 	public void searchByTagSingle(ActionEvent e) {
 		if((Button)e.getSource() == tagSearchSingle) {
 			if(tagTypeSingle.getText().equals("")||tagValueSingle.getText().equals("")) {
@@ -147,7 +160,10 @@ public class PhotoSearchController extends PhotoLibController {
 		}		
 	}
 	
-	
+	/**
+	 * searches all photos by multiple user inputted tag-value pairs
+	 * @param e search by multiple tag-value pairs button
+	 */
 	public void searchByTagDouble(ActionEvent e) {
 		if((Button)e.getSource() == tagSearchDouble) {
 			if(tagTypeDouble1.getText().equals("")||tagValueDouble1.getText().equals("")
@@ -215,6 +231,10 @@ public class PhotoSearchController extends PhotoLibController {
 		}		
 	}
 	
+	/**
+	 * creates new album from search results 
+	 * @param e create new album button
+	 */
 	public void createNewAlbum(ActionEvent e) {
 		if((Button)e.getSource() == createNewAlbum) {
 			if(enterAlbumName.getText().equals("") ){
@@ -256,7 +276,10 @@ public class PhotoSearchController extends PhotoLibController {
 		}
 	}
 	
-	
+	/**
+	 * sets up current window 
+	 * @param primaryStage current window
+	 */
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage; 
 		this.currUser = PhotoLibrary.currentUser; 
@@ -267,6 +290,9 @@ public class PhotoSearchController extends PhotoLibController {
 		
 	}
 	
+	/**
+	 * populates results list with photo results 
+	 */
 	public void populateList() {
 		resultsList.setCellFactory(param -> new ListCell<String>(){
 			private ImageView imageView = new ImageView();
