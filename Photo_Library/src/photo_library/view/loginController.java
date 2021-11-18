@@ -18,10 +18,21 @@ public class loginController extends PhotoLibController {
 	@FXML TextField enterUsername;
 	Stage mainStage;
 	
+	/**
+	 * sets up current window
+	 * @param PrimaryStage current window
+	 * @throws Exception
+	 */
 	public void start(Stage PrimaryStage) throws Exception {
 		mainStage = PrimaryStage;
 		
 	}
+	
+	/**
+	 * opens account of inputted username 
+	 * @param e login button
+	 * @throws Exception
+	 */
 	public void login(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == enter) {
 			boolean dne = false;

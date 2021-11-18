@@ -216,31 +216,37 @@ public class AlbumPageController extends PhotoLibController {
 		}
 	}
 	
-	
-	public void addPhoto() throws Exception {
-		FileChooser chooser = new FileChooser();
-		File file = chooser.showOpenDialog(mainStage);
-		if(file == null) {
-			return;
-		}
-		if(photos.contains(file.getAbsolutePath())) {
-			incorrectInfoError("Duplicate Photo", "This photo already exists. Try Again");
-			return;
-		}
-		for(Album a:currentUser.getAlbums()) {
-			for(Photo p:a.getPhotos()) {
-				if(p.getPath().equals(file.getAbsolutePath())) {
-					album.addPhoto(p);
-					photos.add(p.getPath());
-					addImages();
-					return;
+	/**
+	 * adds new photo to album 
+	 * @param e add photo button
+	 * @throws Exception
+	 */
+	public void addPhoto(ActionEvent e) throws Exception {
+		if((Button)e.getSource() == addPhoto) {
+			FileChooser chooser = new FileChooser();
+			File file = chooser.showOpenDialog(mainStage);
+			if(file == null) {
+				return;
+			}
+			if(photos.contains(file.getAbsolutePath())) {
+				incorrectInfoError("Duplicate Photo", "This photo already exists. Try Again");
+				return;
+			}
+			for(Album a:currentUser.getAlbums()) {
+				for(Photo p:a.getPhotos()) {
+					if(p.getPath().equals(file.getAbsolutePath())) {
+						album.addPhoto(p);
+						photos.add(p.getPath());
+						addImages();
+						return;
+					}
 				}
 			}
+			Photo new_photo = new Photo(file.getAbsolutePath());
+			album.addPhoto(new_photo);
+			photos.add(new_photo.getPath());
+			addImages();
 		}
-		Photo new_photo = new Photo(file.getAbsolutePath());
-		album.addPhoto(new_photo);
-		photos.add(new_photo.getPath());
-		addImages();
 	}
 
 	/**

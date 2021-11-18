@@ -28,6 +28,11 @@ public abstract class PhotoLibController {
 	@FXML Button logout;
 	Stage mainStage;
 	
+	/**
+	 * logs out of current user's account and returns to login page 
+	 * @param e logout button
+	 * @throws Exception
+	 */
 	public void logout(ActionEvent e) throws Exception{
 		if ((Button)e.getSource() == logout) {
 			System.out.println("Logging out");
@@ -48,7 +53,11 @@ public abstract class PhotoLibController {
 		}
 	}
 	
-	
+	/**
+	 * generic error method for displaying errors in other controllers 
+	 * @param content body of error message 
+	 * @param title header of error message 
+	 */
 	public void incorrectInfoError(String content, String title) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle(title);
