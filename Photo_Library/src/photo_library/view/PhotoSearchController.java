@@ -281,8 +281,8 @@ public class PhotoSearchController extends PhotoLibController {
 					setText(temp.getCaption());
 					setGraphic(imageView);
                 }
-		}
-	});
+            }
+		});
 		
 		resultsList.setItems(results);
 		
