@@ -118,7 +118,8 @@ public class PhotoSearchController extends PhotoLibController {
 			
 			for(Album album : currUser.getAlbums()) {
 				for(Photo photo : album.getPhotos()) {
-					if( photo.getTags().containsKey(tagTypeSingle.getText()) 
+					if( photo.getTags() != null
+							&& photo.getTags().containsKey(tagTypeSingle.getText()) 
 							&& photo.getTags().get(tagTypeSingle.getText()).contains(tagValueSingle.getText())
 							&& !results.contains(photo.getPath())) {
 						results.add(photo.getPath()); 
@@ -164,7 +165,8 @@ public class PhotoSearchController extends PhotoLibController {
 			for(Album album : currUser.getAlbums()) {
 				for(Photo photo : album.getPhotos()) {
 					if(and) {
-						if( photo.getTags().containsKey(tagTypeDouble1.getText()) 
+						if( photo.getTags() != null
+								&& photo.getTags().containsKey(tagTypeDouble1.getText()) 
 								&& photo.getTags().get(tagTypeDouble1.getText()).contains(tagValueDouble1.getText())
 								&& photo.getTags().containsKey(tagTypeDouble2.getText()) 
 								&& photo.getTags().get(tagTypeDouble2.getText()).contains(tagValueDouble2.getText())
@@ -173,7 +175,8 @@ public class PhotoSearchController extends PhotoLibController {
 						}
 					}
 					if(or) {
-						if( ((photo.getTags().containsKey(tagTypeDouble1.getText()) 
+						if( photo.getTags() != null
+								&& ((photo.getTags().containsKey(tagTypeDouble1.getText()) 
 								&& photo.getTags().get(tagTypeDouble1.getText()).contains(tagValueDouble1.getText()))
 								|| (photo.getTags().containsKey(tagTypeDouble2.getText()) 
 								&& photo.getTags().get(tagTypeDouble2.getText()).contains(tagValueDouble2.getText())))
@@ -244,6 +247,45 @@ public class PhotoSearchController extends PhotoLibController {
 	}
 	
 	public void populateList() {
+		/*
+		
+		resultsList.setCellFactory(param -> new ListCell<String>(){
+			private ImageView imageView = new ImageView();
+            @Override
+            public void updateItem(String name, boolean empty){
+                super.updateItem(name, empty);
+                if (empty) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    Photo temp = null;
+                    for (Album album : currUser.getAlbums()) {
+                    	for(Photo p: album.getPhotos()) {
+                        	if(p.getPath().equals(name)) {
+                        		temp = p;
+                        		break;
+                        	}
+                        }
+                    }
+                    Image temp1 = null;
+                    InputStream stream = null;
+					try {
+						stream = new FileInputStream(temp.getPath());
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					temp1 = new Image(stream);
+					imageView.setImage(temp1);
+					imageView.setFitHeight(100);
+					imageView.setFitWidth(100);
+					imageView.setPreserveRatio(true);
+					setText(temp.getCaption());
+					setGraphic(imageView);
+                }
+		}
+	});
+	*/ 
 		
 		resultsList.setItems(results);
 		
