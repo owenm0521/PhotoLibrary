@@ -31,7 +31,7 @@ public class AlbumsListController extends PhotoLibController {
 	private Stage primaryStage; 
 	
 	
-	private void movePicture(ActionEvent e) {
+	public void movePicture(ActionEvent e) {
 		if((Button)e.getSource() == moveToAlbum) {
 			int albumIndex = albumsList.getSelectionModel().getSelectedIndex();
 			if (albumIndex == -1)
@@ -50,7 +50,7 @@ public class AlbumsListController extends PhotoLibController {
 		}
 	}
 	
-	private void copyPicture(ActionEvent e) {
+	public void copyPicture(ActionEvent e) {
 		if((Button)e.getSource() == copyToAlbum) {
 			int albumIndex = albumsList.getSelectionModel().getSelectedIndex();
 			if (albumIndex == -1)
@@ -67,27 +67,21 @@ public class AlbumsListController extends PhotoLibController {
 			return; 
 		}
 	}
-	/* 
+
 	
-	private void back(ActionEvent e) throws Exception {
+	public void back(ActionEvent e) throws Exception {
 		if((Button)e.getSource() == back) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/photo_library/view/albumPage.fxml"));
 			AnchorPane root = (AnchorPane)loader.load();
 			AlbumPageController controller = loader.getController();
-<<<<<<< HEAD:Photo_Library/src/photo_library/view/albumsListController.java
-			controller.start(primaryStage);
-=======
 			controller.start(primaryStage, prevAlbum, currUser);
->>>>>>> 16e6f8213a5da2d404a5faa0b52493aa01976388:Photo_Library/src/photo_library/view/AlbumsListController.java
-	
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
 		}
 	}
-	*/ 
 	
 	
 	public void start(Stage primaryStage, Album prevAlbum, Photo selectedPhoto) {
