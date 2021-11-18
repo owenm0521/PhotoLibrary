@@ -102,23 +102,10 @@ public class UserController extends PhotoLibController {
 		}
 	}
 	
-<<<<<<< HEAD
 	/**
 	 * renames selected album 
 	 * @param e rename button
 	 */
-=======
-	public void updateAlbumList() {
-		ObservableList<String> albumNames = FXCollections.observableArrayList();
-		for(Album a: albums) {
-			albumNames.add(a.getName());
-		}
-		
-		albumList.getItems().clear();
-		albumList.setItems(albumNames);
-	}
-	
->>>>>>> f1673b5ae77ce1cc4bd700f33bc523cb64c08eef
 	public void renameAlbum(ActionEvent e) {
 		if((Button)e.getSource() == renameCurrentAlbum) {
 			if(currentAlbumName.getText().isEmpty()) {
