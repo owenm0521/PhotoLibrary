@@ -214,7 +214,7 @@ public class AlbumPageController extends PhotoLibController {
 		}
 	}
 	
-	public void createNewTag() {
+	public void createNewTag() throws Exception {
 		if(tag.getValue() == null || value.getText().isEmpty()) {
 			return;
 		}
@@ -245,10 +245,10 @@ public class AlbumPageController extends PhotoLibController {
 		}
 		photoTagsView.setItems(photoTags);
 		
-		
+		updatePhoto();
 	}
 	
-	public void deleteTag() {
+	public void deleteTag() throws Exception {
 		if(tag.getValue() == null || value.getText().isEmpty()) {
 			return;
 		}
@@ -269,6 +269,7 @@ public class AlbumPageController extends PhotoLibController {
 			photoTags.add(key +" | " + photo.getTags().get(key));
 		}
 		photoTagsView.setItems(photoTags);
+		updatePhoto();
 		
 	}
 	

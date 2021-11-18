@@ -184,7 +184,7 @@ public class UserController extends PhotoLibController {
 
 		Scene scene = new Scene(root);
 		mainStage.setScene(scene);
-		mainStage.setTitle("Login");
+		mainStage.setTitle("Search");
 		mainStage.setResizable(false);
 		mainStage.show();
 	}
