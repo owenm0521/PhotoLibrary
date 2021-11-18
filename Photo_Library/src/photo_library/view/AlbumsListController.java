@@ -46,7 +46,7 @@ public class AlbumsListController extends PhotoLibController {
 			if (albumIndex == -1) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Error");
-				alert.setHeaderText("Select an album fucker.");
+				alert.setHeaderText("Select an album.");
 				alert.showAndWait();
 				return;
 			}
@@ -78,7 +78,7 @@ public class AlbumsListController extends PhotoLibController {
 			if (albumIndex == -1) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Error");
-				alert.setHeaderText("Select an album fucker.");
+				alert.setHeaderText("Select an album.");
 				alert.showAndWait();
 				return;
 			}
