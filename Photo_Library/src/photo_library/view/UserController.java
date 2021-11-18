@@ -33,7 +33,7 @@ public class UserController extends PhotoLibController {
 	@FXML Button deleteCurrentAlbum;
 	@FXML Button openCurrentAlbum;
 	@FXML Button renameCurrentAlbum;
-	@FXML TextField enterNewAlbum;
+	@FXML TextField newAlbumName;
 	@FXML TextField currentAlbumName;
 	@FXML TextField numPhotos;
 	@FXML TextField dateRange;
@@ -67,23 +67,26 @@ public class UserController extends PhotoLibController {
 			numphoto++;
 		}
 		numPhotos.setText(numphoto+"");
-		dateRange.setText(album.getMinDate() + " TO " + album.getMaxDate());
-		
+		if(album.getMinDate() == null) {
+			dateRange.clear();
+		}
+		else {
+			dateRange.setText(album.getMinDate() + " TO " + album.getMaxDate());
+		}
 	}
 	
 	public void createAlbum(ActionEvent e) {
 		if((Button)e.getSource() == createNewAlbum) {
-			if(!enterNewAlbum.getText().isEmpty()) {
-				String new_album = enterNewAlbum.getText();
+			if(!newAlbumName.getText().isEmpty()) {
+				String new_album = newAlbumName.getText();
 				if(currentUser.searchAlbums(new_album) != null) {
 					incorrectInfoError("Duplicate Album", "There is another album with this name. Please choose a different name");
 					return;
 				}
 				Album temp = new Album(new_album);
 				albums.add(temp);
-				updateAlbumList();
 				currentUser.setAlbums(albums);
-				
+				albumList.getItems().add(temp.getName());
 			}
 		}
 	}
@@ -94,6 +97,7 @@ public class UserController extends PhotoLibController {
 			albumNames.add(a.getName());
 		}
 		
+		albumList.getItems().clear();
 		albumList.setItems(albumNames);
 	}
 	
@@ -112,9 +116,10 @@ public class UserController extends PhotoLibController {
 				}
 				Album currentAlbum = null;
 				currentAlbum = currentUser.searchAlbums(current);
-				albums.remove(currentAlbum);
 				currentAlbum.rename(new_name);
-				updateAlbumList();
+				int index = albumList.getItems().indexOf(current);
+				albumList.getItems().remove(current);
+				albumList.getItems().add(index, new_name);
 				albumList.getSelectionModel().select(new_name);
 			}
 		}
@@ -134,11 +139,10 @@ public class UserController extends PhotoLibController {
 			}
 		}
 		albums.remove(index);
-		updateAlbumList();
+		albumList.getItems().remove(index);
 		if(index == 0) {
 			index = 1;
 		}
-		updateAlbumList();
 		albumList.getSelectionModel().select(index-1);
 		if(albums.size() <= 0) {
 			currentAlbumName.clear();
