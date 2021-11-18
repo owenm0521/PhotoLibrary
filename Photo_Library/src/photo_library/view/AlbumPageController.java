@@ -20,9 +20,11 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.ListView;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -215,8 +217,30 @@ public class AlbumPageController extends PhotoLibController {
 	}
 	
 	
-	public void addPhoto() {
-		
+	public void addPhoto() throws Exception {
+		FileChooser chooser = new FileChooser();
+		File file = chooser.showOpenDialog(mainStage);
+		if(file == null) {
+			return;
+		}
+		if(photos.contains(file.getAbsolutePath())) {
+			incorrectInfoError("Duplicate Photo", "This photo already exists. Try Again");
+			return;
+		}
+		for(Album a:currentUser.getAlbums()) {
+			for(Photo p:a.getPhotos()) {
+				if(p.getPath().equals(file.getAbsolutePath())) {
+					album.addPhoto(p);
+					photos.add(p.getPath());
+					addImages();
+					return;
+				}
+			}
+		}
+		Photo new_photo = new Photo(file.getAbsolutePath());
+		album.addPhoto(new_photo);
+		photos.add(new_photo.getPath());
+		addImages();
 	}
 
 	/**
