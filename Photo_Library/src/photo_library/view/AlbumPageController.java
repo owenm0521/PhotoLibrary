@@ -227,7 +227,7 @@ public class AlbumPageController extends PhotoLibController {
 			incorrectInfoError("Location Error","Location can only have one value.");
 			return;
 		}
-		if(photo.getTags().containsKey(tag.getValue()) && photo.getTags().get(tag).contains(value.getText())){
+		if(photo.getTags().containsKey(tag.getValue()) && photo.getTags().get(tag.getValue()).contains(value.getText())){
 			incorrectInfoError("Duplicate Value", "This tag already has that value");
 			return;
 		}
@@ -249,6 +249,26 @@ public class AlbumPageController extends PhotoLibController {
 	}
 	
 	public void deleteTag() {
+		if(tag.getValue() == null || value.getText().isEmpty()) {
+			return;
+		}
+		int index = photoList.getSelectionModel().getSelectedIndex();
+		if (index == -1) {
+			return;
+		}
+		Photo photo = album.findPhoto(photos.get(index));
+		if(photo.getTags().containsKey(tag.getValue().toString())) {
+			photo.getTags().get(tag.getValue().toString()).remove(value.getText());
+			if(photo.getTags().get(tag.getValue().toString()).size() == 0) {
+				photo.getTags().remove(tag.getValue().toString());
+			}
+		}
+		photo.getTags().get(tag.getValue().toString()).add(value.getText());
+		photoTags = FXCollections.observableArrayList();
+		for(String key:photo.getTags().keySet()) {
+			photoTags.add(key +" | " + photo.getTags().get(key));
+		}
+		photoTagsView.setItems(photoTags);
 		
 	}
 	
